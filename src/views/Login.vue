@@ -16,13 +16,21 @@
       </div>
       <div class="login-right">
         <el-form ref="formRef" :model="form" label-width="100px" :rules="rules" class="login-form">
-          <el-form-item label="用户名" prop="username">
-            <el-input v-model="form.username"></el-input>
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="form.email"></el-input>
           </el-form-item>
 
           <el-form-item label="密码" prop="pasword">
             <el-input v-model="form.password" type="password" clearable></el-input>
           </el-form-item>
+
+          <div class="vcode">
+            <el-form-item label="验证码" prop="vcode">
+            <el-input v-model="form.vcode" type="password" clearable></el-input>
+          </el-form-item>
+            <el-button type="primary" style="width: 70px;" @click="getVcode">验证码</el-button>
+          </div>
+
           <el-form-item label="角色">
             <el-radio-group v-model="form.role">
               <el-radio label="1">家长</el-radio>
@@ -43,7 +51,8 @@
 <script setup>
 import {useRouter} from 'vue-router'
 import {ref} from 'vue'
-
+import API from '../utils/axiosInference'
+import { ElMessage } from 'element-plus'
 const router = useRouter()
 
 let submit = () => {
@@ -51,9 +60,27 @@ let submit = () => {
 }
 
 let imgUrl = ref(require('@/assets/images/img.png'));
-let form = ref({username: '', password: '', role: '1'})
+let form = ref({email: '', password: '',vcode:'', role: '1'})
 let rules = ref({})
 
+function getVcode(){
+    if(form.value.email == ''){
+      ElMessage({
+        message:"邮箱不能为空",
+        type:'warning'
+      })
+    }else{
+      console.log("请求获取验证码...",form.value.email)
+      API({
+      method:'get',
+      url:'/user/code',
+      data:form.email
+    }).then((response)=>{
+      console.log("获取成功:",response.data)
+    })
+  }
+   
+}
 </script>
 
 <style scoped>
@@ -83,6 +110,10 @@ let rules = ref({})
   background-color: white;
   box-shadow: 0 0 20px 5px rgba(34, 84, 142, .26);
 
+}
+
+.vcode{
+  display: flex;
 }
 
 img {
