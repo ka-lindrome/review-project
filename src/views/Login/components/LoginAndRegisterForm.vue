@@ -132,7 +132,7 @@ function login(){
    }).then((response)=>{
      console.log("登陆成功",response.data)
      ElMessage({
-      message:"登陆成功~",
+      message:"登陆成功",
       type:"success"
      })  
      router.replace('/Index')
