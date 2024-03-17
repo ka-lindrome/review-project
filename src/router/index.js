@@ -3,7 +3,7 @@ import {createRouter, createWebHashHistory} from "vue-router"
 import Index from '../components/Index'
 import VisualAnalysisP from "@/views/Parent/VisualAnalysisP";
 import Home from '@/views/Home'
-import Login from '@/views/Login'
+import Login from '@/views/Login/Login.vue'
 import UploadPapers from '@/views/Teacher/UploadPapers'
 import PersonCenter from '@/views/common/PersonCenter'
 import PersonSetting from '@/views/common/PersonSetting'

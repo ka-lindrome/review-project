@@ -1,92 +1,34 @@
 <template>
-  <div class="container">
-    <div class="login-container">
+  <div class="login-container sass-loader">
+    <div class="login-box">
       <div class="login-left">
-        <div class="top">
-          <div class="title">
-            <span>欢迎使用</span>
-          </div>
-          <div class="desc">
-            <span>Vite2.x + ElementPlus + Vue3.x + TypeScript</span>
-          </div>
-        </div>
-        <div class="bottom">
-          <img :src="imgUrl"/>
-        </div>
+        <img class="login-left-img" src="@/assets/images/login_left.png" alt="login" />
       </div>
-      <div class="login-right">
-        <el-form ref="formRef" :model="form" label-width="100px" :rules="rules" class="login-form">
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="form.email"></el-input>
-          </el-form-item>
-
-          <el-form-item label="密码" prop="pasword">
-            <el-input v-model="form.password" type="password" clearable></el-input>
-          </el-form-item>
-
-          <div class="vcode">
-            <el-form-item label="验证码" prop="vcode">
-            <el-input v-model="form.vcode" type="password" clearable></el-input>
-          </el-form-item>
-            <el-button type="primary" style="width: 70px;" @click="getVcode">验证码</el-button>
-          </div>
-
-          <el-form-item label="角色">
-            <el-radio-group v-model="form.role">
-              <el-radio label="1">家长</el-radio>
-              <el-radio label="2">教师</el-radio>
-              <el-radio label="3">管理员</el-radio>
-            </el-radio-group>
-          </el-form-item>
-
-        </el-form>
-        <div class="btn" @click="submit">
-          登录
+      <div class="login-form">
+        <div class="login-logo">
+          <img class="login-icon" src="@/assets/images/logo.svg" alt="" />
+          <h2 class="logo-text">Welcome to us!</h2>
         </div>
+        <LoginAndRegisterForm/>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {useRouter} from 'vue-router'
-import {ref} from 'vue'
-import API from '../utils/axiosInference'
-import { ElMessage } from 'element-plus'
+import LoginAndRegisterForm from '@/views/Login/components/LoginAndRegisterForm.vue';
+import {useRouter} from 'vue-router';
+import {ref} from 'vue';
 const router = useRouter()
 
-let submit = () => {
-  router.replace('/Index')
-}
-
-let imgUrl = ref(require('@/assets/images/img.png'));
 let form = ref({email: '', password: '',vcode:'', role: '1'})
-let rules = ref({})
+let showLogin = ref(false)
 
-function getVcode(){
-    if(form.value.email == ''){
-      ElMessage({
-        message:"邮箱不能为空",
-        type:'warning'
-      })
-    }else{
-      console.log("请求获取验证码...",form.value.email)
-      API({
-      method:'get',
-      url:'/user/code',
-      data:form.email
-    }).then((response)=>{
-      console.log("获取成功:",response.data)
-    })
-  }
-   
-}
 </script>
 
 <style scoped>
-
-.container {
-
+@import "./index.scss";
+/* .container {
   position: relative;
   background-image: linear-gradient(90deg, #ebebeb, #f5f7f6);
   height: 100vh;
@@ -95,7 +37,6 @@ function getVcode(){
   align-items: center;
 
 }
-
 
 .login-container {
   width: 874px;
@@ -110,7 +51,7 @@ function getVcode(){
   background-color: white;
   box-shadow: 0 0 20px 5px rgba(34, 84, 142, .26);
 
-}
+} */
 
 .vcode{
   display: flex;
