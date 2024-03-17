@@ -6,6 +6,7 @@ import Home from '@/views/Home'
 import Login from '@/views/Login'
 import UploadPapers from '@/views/Teacher/UploadPapers'
 import PersonCenter from '@/views/common/PersonCenter'
+import PersonSetting from '@/views/common/PersonSetting'
 const routes = [
     {
         path: '/',
@@ -25,14 +26,18 @@ const routes = [
                 path: '/VisualAnalysisP',
                 name: '数据可视化',
                 component: VisualAnalysisP
-            },{
-            path:'/UploadPapers',
-                name:'文件上传',
+            }, {
+                path: '/UploadPapers',
+                name: '文件上传',
                 component: UploadPapers
-            },{
-                path:'/PersonCenter',
-                name:'个人中心',
+            }, {
+                path: '/PersonCenter',
+                name: '个人中心',
                 component: PersonCenter
+            }, {
+                path: '/PersonSetting',
+                name: '个人设置',
+                component: PersonSetting
             }
         ]
     },

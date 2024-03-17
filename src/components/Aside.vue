@@ -5,7 +5,7 @@
     <el-menu
         background-color="#545c64"
         text-color="#fff"
-        active-text-color="#ffd04b"
+        active-text-color="#1890FF"
         style="height: 100%;"
         default-active="/Home"
         :collapse="isCollapse"
@@ -34,14 +34,41 @@
         <span style="margin-left: 10px">文件上传</span>
       </el-menu-item>
 
-      <el-menu-item index="/PersonCenter">
-        <el-icon>
-          <User/>
-        </el-icon>
-        <span style="margin-left: 10px">个人中心</span>
-      </el-menu-item>
+      <!--      <el-menu-item index="/PersonCenter">-->
+      <!--        <el-icon>-->
+      <!--          <User/>-->
+      <!--        </el-icon>-->
+      <!--        <span style="margin-left: 10px">个人中心</span>-->
+      <!--      </el-menu-item>-->
 
-      <el-menu-item index="/PersonCenter">
+
+      <el-sub-menu index="1">
+        <template #title>
+          <el-icon>
+            <location/>
+          </el-icon>
+          <span>个人页</span>
+        </template>
+
+          <el-menu-item index="/PersonCenter" >
+            <el-icon>
+              <User/>
+            </el-icon>
+            <span style="margin-left: 10px">个人中心</span>
+          </el-menu-item>
+
+
+          <el-menu-item index="/PersonSetting">
+            <el-icon>
+              <Setting/>
+            </el-icon>
+            <span style="margin-left: 10px">个人设置</span>
+          </el-menu-item>
+
+      </el-sub-menu>
+
+
+      <el-menu-item index="3">
         <el-icon>
           <Link/>
         </el-icon>
@@ -77,5 +104,27 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/deep/ .el-menu-item:hover {
+  color: white !important;
+  background: #263445 !important;
+}
+
+
+/deep/ .el-sub-menu .el-sub-menu__title:hover {
+    color:white!important;
+    background: #263445 !important;
+}
+
+/deep/ .el-sub-menu .el-menu-item {
+  background-color: #1f2d3e !important;
+}
+
+/deep/ .el-sub-menu .el-menu-item:hover {
+  background-color: #001529 !important;
+}
+
+
+
+
 
 </style>
