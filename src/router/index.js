@@ -4,6 +4,7 @@ import Index from '../components/Index'
 import VisualAnalysisP from "@/views/Parent/VisualAnalysisP";
 import Home from '@/views/Home'
 import Login from '@/views/Login/Login.vue'
+import AiChat from '@/views/Erniebot/AiChat.vue'
 import UploadPapers from '@/views/Teacher/UploadPapers'
 import PersonCenter from '@/views/common/PersonCenter'
 const routes = [
@@ -21,15 +22,23 @@ const routes = [
                 path: '/Home',
                 name: '首页',
                 component: Home
-            }, {
+            },
+            {
+                path: '/AiChat',
+                name: '智能助手',
+                component: AiChat
+            },
+            {
                 path: '/VisualAnalysisP',
                 name: '数据可视化',
                 component: VisualAnalysisP
-            },{
+            },
+            {
             path:'/UploadPapers',
                 name:'文件上传',
                 component: UploadPapers
-            },{
+            },
+            {
                 path:'/PersonCenter',
                 name:'个人中心',
                 component: PersonCenter

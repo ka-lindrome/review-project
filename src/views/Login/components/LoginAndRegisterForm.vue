@@ -102,42 +102,43 @@ function getVcode(){
 }
 
 function login(){
-   if(Loginform.value.email == ''){
-     ElMessage({
-       message:"邮箱不能为空",
-       type:'warning'
-     })
-   }else if(Loginform.value.password == ''){
-       ElMessage({
-       message:"密码不能为空",
-       type:'warning'
-     })
-   }else if(Loginform.value.vcode == ''){
-       ElMessage({
-       message:"验证码不能为空",
-       type:'warning'
-     })
-   }else{
-     console.log("请求登录...",Loginform.value.email)
-     const postData = {
-       email:Loginform.value.email,
-       password:Loginform.value.password,
-       roleID:parseInt(Loginform.value.role)
-       }
-       console.log(postData);
-     API({
-     method:'post',
-     url:'/user/login',
-     data:postData
-   }).then((response)=>{
-     console.log("登陆成功",response.data)
-     ElMessage({
-      message:"登陆成功",
-      type:"success"
-     })  
-     router.replace('/Index')
-   })
-   }
+  router.replace('/Index')
+  //  if(Loginform.value.email == ''){
+  //    ElMessage({
+  //      message:"邮箱不能为空",
+  //      type:'warning'
+  //    })
+  //  }else if(Loginform.value.password == ''){
+  //      ElMessage({
+  //      message:"密码不能为空",
+  //      type:'warning'
+  //    })
+  //  }else if(Loginform.value.vcode == ''){
+  //      ElMessage({
+  //      message:"验证码不能为空",
+  //      type:'warning'
+  //    })
+  //  }else{
+  //    console.log("请求登录...",Loginform.value.email)
+  //    const postData = {
+  //      email:Loginform.value.email,
+  //      password:Loginform.value.password,
+  //      roleID:parseInt(Loginform.value.role)
+  //      }
+  //      console.log(postData);
+  //    API({
+  //    method:'post',
+  //    url:'/user/login',
+  //    data:postData
+  //  }).then((response)=>{
+  //    console.log("登陆成功",response.data)
+  //    ElMessage({
+  //     message:"登陆成功",
+  //     type:"success"
+  //    })  
+  //    router.replace('/Index')
+  //  })
+  //  }
 }
 
 function changeToRegister(){

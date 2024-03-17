@@ -20,9 +20,15 @@
         </el-icon>
         <span style="margin-left: 10px;">首页</span>
       </el-menu-item>
-      <el-menu-item index="/VisualAnalysisP">
+      <el-menu-item index="/AiChat">
         <el-icon>
           <View/>
+        </el-icon>
+        <span style="margin-left: 10px">智能助手</span>
+      </el-menu-item>
+      <el-menu-item index="/VisualAnalysisP">
+        <el-icon>
+          <PieChart />
         </el-icon>
         <span style="margin-left: 10px">数据可视化</span>
       </el-menu-item>
@@ -41,7 +47,7 @@
         <span style="margin-left: 10px">个人中心</span>
       </el-menu-item>
 
-      <el-menu-item index="/PersonCenter">
+      <el-menu-item index="/LearnMore">
         <el-icon>
           <Link/>
         </el-icon>

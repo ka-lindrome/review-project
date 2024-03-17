@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex;align-items: center;">
+  <div style="display: flex; align-items: center;">
     <el-icon style="cursor: pointer;" :size="30" @click="collapse">
       <Expand v-if="isCollapse"/>
       <Fold v-else/>
