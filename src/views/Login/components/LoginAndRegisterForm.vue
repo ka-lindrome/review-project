@@ -16,13 +16,11 @@
              <el-radio label="1">管理员</el-radio>
            </el-radio-group>
          </el-form-item>
-         <div class="login-btn">
+        <div class="login-btn">
            <el-button class="btn" :icon="HomeFilled" round size="large" type="primary" @click="login"> 登录 </el-button>
            <el-button class="btn" :icon="UserFilled" round size="large" type="primary" @click="changeToRegister"> 注册 </el-button>
-       </div>
+        </div>
        </el-form>
-
-
 
        <el-form ref="formRef" :model="Registerform" label-width="100px" :rules="rules" v-if="showLogin">
 
@@ -53,10 +51,10 @@
            </el-radio-group>
          </el-form-item>
 
-         <div class="login-btn">
+        <div class="login-btn">
            <el-button class="btn" :icon="HomeFilled" round size="large" type="primary" @click="backToLogin"> 返回登录 </el-button>
            <el-button class="btn" :icon="UserFilled" round size="large" type="primary" @click="register"> 完成注册 </el-button>
-       </div>
+        </div>
        </el-form>
    </div>
 </template>
