@@ -43,7 +43,7 @@
             <div class="avatar">
               <div class="preview">
                 <span>头像</span>
-                <img src="../../assets/images/img.png"/>
+                <img src="src/assets/images/img.png"/>
               </div>
               <el-upload
                   class="avatar-uploader"
@@ -64,8 +64,8 @@
           </div>
           <div class="secure-item">
             <div class="secure-info">
-              <span class="secure-key">账户密码</span>
-              <span class="secure-value">当前密码强度：强</span>
+              <span class="secure-key">账户密码 (建议含有字母,数字以及特殊符号并且密码长度不小于16)</span>
+              <span class="secure-value">当前密码强度：{{ intensity }}</span>
             </div>
             <div class="opera-btn"><span>修改</span></div>
           </div>
@@ -126,6 +126,7 @@
 
 <script setup>
 import {onMounted, ref} from 'vue'
+import API from '@/utils/axiosInference'
 
 let settingForm = ref({email: '', nickname: ' ', desc: '', mobile: ' '})
 let tabPosition = ref('left')
@@ -133,6 +134,7 @@ let tabPosition = ref('left')
 let userSwitch = ref(false);
 let sysSwitch = ref(false);
 let taskSwitch = ref(false);
+let intensity = ref("较弱")
 
 
 const validateMobile = (rule, value, callback) => {
@@ -158,9 +160,30 @@ const rules = {
   mobile: {required: true, validator: validateMobile, trigger: ['blur', 'change']}
 }
 
+let check = (val) => {
+  for (let i = 0; i < val.length; i++) {
+
+  }
+
+  return 1
+}
 
 onMounted(() => {
-
+  API({
+    method: 'post',
+    url: '/user/',
+    data: JSON.parse(sessionStorage.getItem('Token'))
+  }).then(res => {
+    let pwd = res.data.password
+    let ret = check(pwd)
+    if (ret === 1) {
+      intensity.value = "强"
+    } else if (ret === 2) {
+      intensity.value = "较强"
+    } else if (ret == 3) {
+      intensity.value = "弱"
+    }
+  })
 })
 </script>
 

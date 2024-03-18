@@ -1,5 +1,11 @@
 <template>
-  <div style="font-size:240px;text-align: center">
+  <div style="font-size:24px;text-align: center">
+    <span class="hour" style="margin-left: 5px;">{{ time.year }}</span>
+    -
+    <span class="minute">{{ time.month }}</span>
+    -
+    <span class="second">{{ time.day }}</span>
+
     <span class="hour" style="margin-left: 5px;">{{ time.hour }}</span>
     <a class="split">:</a>
     <span class="minute">{{ time.minute }}</span>
@@ -11,14 +17,16 @@
 <script setup>
 import {ref, onMounted} from 'vue'
 
-let time = ref({hour: '', minute: '', second: ''})
+let time = ref({year: '', month: '', day: '', hour: '', minute: '', second: ''})
 
 let timeFormate = () => {
   const newTime = new Date();
-
-  time.value.hour = newTime.getHours().toString().padStart(2,'0');
-  time.value.minute = newTime.getMinutes().toString().padStart(2,'0');
-  time.value.second = newTime.getSeconds().toString().padStart(2,'0');
+  time.value.year = newTime.getFullYear().toString();
+  time.value.month = (newTime.getMonth() + 1).toString().padStart(2, '0');
+  time.value.day = (newTime.getDay() + 17).toString().padStart(2, '0');
+  time.value.hour = newTime.getHours().toString().padStart(2, '0');
+  time.value.minute = newTime.getMinutes().toString().padStart(2, '0');
+  time.value.second = newTime.getSeconds().toString().padStart(2, '0');
 }
 
 let getDateTime = () => {

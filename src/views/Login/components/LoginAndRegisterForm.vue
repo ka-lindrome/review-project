@@ -134,9 +134,8 @@ function login() {
     }).then((response) => {
       console.log("登陆成功", response.data)
 
-      /*
+      sessionStorage.setItem("Token", JSON.stringify(response.data))
 
-      */
       ElMessage({
         message: "登陆成功",
         type: "success"
@@ -186,6 +185,8 @@ function register() {
       data: postData
     }).then((response) => {
       console.log("登陆成功", response.data)
+
+
       ElMessage({
         message: "注册成功，请返回登录界面重新登录~",
         type: "success"

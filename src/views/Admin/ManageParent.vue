@@ -1,6 +1,6 @@
 <template>
-  <div style="margin-top:10px; margin-left: 10px;">
-    <el-button @click="upLoadFiles" color="#263445" style="margin-bottom: 20px;margin-left: 10px;"> 上传文件</el-button>
+
+  <div>
     <el-table :data="tableData" height="750" style="width: 1200px">
       <el-table-column prop="id" label="学号" width="180" align="center">
 
@@ -22,24 +22,23 @@
 
       </el-table-column>
     </el-table>
-
   </div>
 </template>
 
 <script setup>
 import {ref, onMounted} from 'vue'
+import API from '@/utils/axiosInference'
 
-let tableData = ref([{id:'01',class:'22',name:'123',grade:'100'}])
+let tableData = ref([{id: '01', class: '22', name: '123', grade: '100'}])
 
-let upLoadFiles = () => {
-
-}
-
-let showPapers = () => {
-
-}
 onMounted(() => {
-  // tableData.value=
+  API({
+    method: '',
+    url: '',
+    data: ''
+  }).then(res => {
+    tableData.value = res.data
+  })
 })
 </script>
 

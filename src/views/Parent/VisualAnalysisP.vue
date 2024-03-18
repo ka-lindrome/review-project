@@ -1,5 +1,5 @@
 <template>
- 可视化
+ 可视化P
 </template>
 
 <script setup>

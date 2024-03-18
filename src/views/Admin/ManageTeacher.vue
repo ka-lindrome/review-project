@@ -1,5 +1,5 @@
 <template>
-  T可视化
+manageTeacher
 </template>
 
 <script setup>

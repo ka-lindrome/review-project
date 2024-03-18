@@ -13,33 +13,60 @@
         router
     >
 
-
       <el-menu-item index="/Home">
         <el-icon>
           <House/>
         </el-icon>
         <span style="margin-left: 10px;">首页</span>
       </el-menu-item>
-      <el-menu-item index="/VisualAnalysisP">
+
+      <el-sub-menu index="2" v-show="roleId==='1'">
+        <template #title>
+          <el-icon>
+            <Star/>
+          </el-icon>
+          <span>人员管理</span>
+        </template>
+
+        <el-menu-item index="/ManageTeacher">
+          <el-icon>
+            <User/>
+          </el-icon>
+          <span style="margin-left: 10px">教职工人员</span>
+        </el-menu-item>
+
+
+        <el-menu-item index="/ManageParent">
+          <el-icon>
+            <User/>
+          </el-icon>
+          <span style="margin-left: 10px">用户人员</span>
+        </el-menu-item>
+
+      </el-sub-menu>
+
+
+      <el-menu-item index="/VisualAnalysisT" v-show="roleId==='2'">
         <el-icon>
-          <View/>
+          <DataAnalysis/>
         </el-icon>
         <span style="margin-left: 10px">数据可视化</span>
       </el-menu-item>
 
-      <el-menu-item index="/UploadPapers">
+      <el-menu-item index="/VisualAnalysisT" v-show="roleId==='3'">
+        <el-icon>
+          <DataAnalysis/>
+        </el-icon>
+        <span style="margin-left: 10px">数据可视化</span>
+      </el-menu-item>
+
+
+      <el-menu-item index="/UploadPapers" v-show="roleId==='2'">
         <el-icon>
           <FolderOpened/>
         </el-icon>
         <span style="margin-left: 10px">文件上传</span>
       </el-menu-item>
-
-      <!--      <el-menu-item index="/PersonCenter">-->
-      <!--        <el-icon>-->
-      <!--          <User/>-->
-      <!--        </el-icon>-->
-      <!--        <span style="margin-left: 10px">个人中心</span>-->
-      <!--      </el-menu-item>-->
 
 
       <el-sub-menu index="1">
@@ -50,47 +77,64 @@
           <span>个人页</span>
         </template>
 
-          <el-menu-item index="/PersonCenter" >
-            <el-icon>
-              <User/>
-            </el-icon>
-            <span style="margin-left: 10px">个人中心</span>
-          </el-menu-item>
+        <el-menu-item index="/PersonCenter">
+          <el-icon>
+            <User/>
+          </el-icon>
+          <span style="margin-left: 10px">个人中心</span>
+        </el-menu-item>
 
 
-          <el-menu-item index="/PersonSetting">
-            <el-icon>
-              <Setting/>
-            </el-icon>
-            <span style="margin-left: 10px">个人设置</span>
-          </el-menu-item>
+        <el-menu-item index="/PersonSetting">
+          <el-icon>
+            <Setting/>
+          </el-icon>
+          <span style="margin-left: 10px">个人设置</span>
+        </el-menu-item>
 
       </el-sub-menu>
 
 
-      <el-menu-item index="3">
+      <el-menu-item index="/TestDataBaseT" v-show="roleId==='2'">
         <el-icon>
-          <Link/>
+          <Document/>
         </el-icon>
-        <span style="margin-left: 10px">了解更多</span>
+        <span style="margin-left: 10px">题库</span>
       </el-menu-item>
 
-      <!--     <el-menu-item index="/Test">-->
-      <!--       <el-icon><Notebook /></el-icon>-->
-      <!--       <span style="margin-left: 10px;">自我评测</span>-->
-      <!--     </el-menu-item>-->
+
+      <el-menu-item index="/TestDataBaseP" v-show="roleId==='3'">
+        <el-icon>
+          <Document/>
+        </el-icon>
+        <span style="margin-left: 10px">题库</span>
+      </el-menu-item>
+
+      <el-menu-item index="/AIRobot" v-show="roleId!='1'">
+        <el-icon>
+          <Cpu/>
+        </el-icon>
+        <span style="margin-left: 10px">智能机器人</span>
+      </el-menu-item>
+
 
     </el-menu>
+
+
   </div>
 
 
 </template>
 
 <script setup>
-import {defineProps, onMounted} from 'vue'
+import {defineProps, onMounted, ref} from 'vue'
 import {useRouter} from 'vue-router'
+import API from '@/utils/axiosInference'
 
 const router = useRouter()
+let roleId = ref('1')
+let token = ref('')
+
 
 const props = defineProps({
   isCollapse: {
@@ -99,7 +143,18 @@ const props = defineProps({
 })
 
 onMounted(() => {
+
+  token.value = JSON.parse(sessionStorage.getItem('Token'))
+
+  API({
+    method: 'post',
+    url: '/user/',
+    data: token.value,
+  }).then(res => {
+    roleId.value = res.data.roleId
+  })
   router.push('/Home')
+
 })
 </script>
 
@@ -111,8 +166,8 @@ onMounted(() => {
 
 
 /deep/ .el-sub-menu .el-sub-menu__title:hover {
-    color:white!important;
-    background: #263445 !important;
+  color: white !important;
+  background: #263445 !important;
 }
 
 /deep/ .el-sub-menu .el-menu-item {

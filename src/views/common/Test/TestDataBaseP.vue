@@ -1,5 +1,5 @@
 <template>
-  T可视化
+  题库P
 </template>
 
 <script setup>

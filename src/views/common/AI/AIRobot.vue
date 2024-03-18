@@ -1,5 +1,5 @@
 <template>
-  T可视化
+ 智能机器人
 </template>
 
 <script setup>
