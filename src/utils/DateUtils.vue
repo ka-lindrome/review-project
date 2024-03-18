@@ -16,7 +16,6 @@ let time = ref({hour: '', minute: '', second: ''})
 let timeFormate = () => {
   const newTime = new Date();
 
-
   time.value.hour = newTime.getHours().toString().padStart(2,'0');
   time.value.minute = newTime.getMinutes().toString().padStart(2,'0');
   time.value.second = newTime.getSeconds().toString().padStart(2,'0');

@@ -52,7 +52,7 @@
                   :on-success="handleAvatarSuccess"
                   :before-upload="beforeAvatarUpload"
               >
-                <el-button style="margin-left: 10px"  color="#263445"><i class="el-icon-upload"></i>更换头像
+                <el-button style="margin-left: 10px" color="#263445"><i class="el-icon-upload"></i>更换头像
                 </el-button>
               </el-upload>
             </div>

@@ -28,6 +28,7 @@ let showLogin = ref(false)
 
 <style scoped>
 @import "./index.scss";
+
 /* .container {
   position: relative;
   background-image: linear-gradient(90deg, #ebebeb, #f5f7f6);
