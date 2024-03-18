@@ -1,8 +1,8 @@
 <template>
-  PERSONCENER
+ 智能机器人
 </template>
 
-<script>
+<script setup>
 
 </script>
 

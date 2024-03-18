@@ -2,11 +2,20 @@ import {createRouter, createWebHashHistory} from "vue-router"
 
 import Index from '../components/Index'
 import VisualAnalysisP from "@/views/Parent/VisualAnalysisP";
+import VisualAnalysisT from "@/views/Teacher/VisualAnalysisT";
 import Home from '@/views/Home'
 import Login from '@/views/Login/Login.vue'
 import AiChat from '@/views/Erniebot/AiChat.vue'
 import UploadPapers from '@/views/Teacher/UploadPapers'
-import PersonCenter from '@/views/common/PersonCenter'
+import PersonCenter from '@/views/common/Person/PersonCenter'
+import PersonSetting from '@/views/common/Person/PersonSetting'
+import ManageTeacher from '@/views/Admin/ManageTeacher'
+import ManageParent from '@/views/Admin/ManageParent'
+import TestDataBaseP from '@/views/common/Test/TestDataBaseP'
+import TestDataBaseT from '@/views/common/Test/TestDataBaseT'
+
+import AIRobot from '@/views/common/AI/AIRobot'
+
 const routes = [
     {
         path: '/',
@@ -30,8 +39,9 @@ const routes = [
             },
             {
                 path: '/VisualAnalysisP',
-                name: '数据可视化',
+                name: '数据可视化P',
                 component: VisualAnalysisP
+<<<<<<< HEAD
             },
             {
             path:'/UploadPapers',
@@ -41,7 +51,44 @@ const routes = [
             {
                 path:'/PersonCenter',
                 name:'个人中心',
+=======
+            }, {
+                path: '/VisualAnalysisT',
+                name: '数据可视化T',
+                component: VisualAnalysisT
+            }, {
+                path: '/UploadPapers',
+                name: '文件上传',
+                component: UploadPapers
+            }, {
+                path: '/PersonCenter',
+                name: '个人中心',
+>>>>>>> 14c6d732bd5b954f6fdb078cf6d92935d8e8e338
                 component: PersonCenter
+            }, {
+                path: '/PersonSetting',
+                name: '个人设置',
+                component: PersonSetting
+            }, {
+                path: '/ManageTeacher',
+                name: '教职工人员',
+                component: ManageTeacher
+            }, {
+                path: '/ManageParent',
+                name: '用户人员',
+                component: ManageParent
+            }, {
+                path: '/TestDataBaseP',
+                name: '题库P',
+                component: TestDataBaseP
+            }, {
+                path: '/TestDataBaseT',
+                name: '题库T',
+                component: TestDataBaseT
+            }, {
+                path: '/AIRobot',
+                name: '智能机器人',
+                component: AIRobot
             }
         ]
     },

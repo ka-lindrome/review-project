@@ -1,14 +1,12 @@
 <template>
-  <DateUtils/>
-
+  T题库
 </template>
 
 <script setup>
-import DateUtils from '@/utils/DateUtils'
+
 
 </script>
 
 <style scoped>
-
 
 </style>
