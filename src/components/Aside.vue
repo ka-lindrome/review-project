@@ -120,9 +120,7 @@
 
     </el-menu>
 
-
   </div>
-
 
 </template>
 
@@ -132,7 +130,7 @@ import {useRouter} from 'vue-router'
 import API from '@/utils/axiosInference'
 
 const router = useRouter()
-let roleId = ref('3')
+let roleId = ref('2')
 let token = ref('')
 
 
@@ -152,29 +150,29 @@ onMounted(() => {
     token: token.value
   }
   }).then(res => {
-    roleId.value = res.data.roleId
+    roleId.value = res.data.data.roleID.toString()
   })
   router.push('/Home')
 })
 </script>
 
 <style scoped>
-/deep/ .el-menu-item:hover {
+.el-menu-item:hover {
   color: white !important;
   background: #263445 !important;
 }
 
 
-/deep/ .el-sub-menu .el-sub-menu__title:hover {
+.el-sub-menu .el-sub-menu__title:hover {
   color: white !important;
   background: #263445 !important;
 }
 
-/deep/ .el-sub-menu .el-menu-item {
+.el-sub-menu .el-menu-item {
   background-color: #1f2d3e !important;
 }
 
-/deep/ .el-sub-menu .el-menu-item:hover {
+.el-sub-menu .el-menu-item:hover {
   background-color: #001529 !important;
 }
 

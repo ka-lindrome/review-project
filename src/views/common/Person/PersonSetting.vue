@@ -3,37 +3,26 @@
     <el-divider content-position="left">个人设置</el-divider>
 
     <el-card class="box-card">
-      <!--      <template #header>-->
-      <!--        <div class="card-header">-->
-      <!--          <el-button class="button" type="text" @click="handleBack"><i class="el-icon-arrow-left"/>返回</el-button>-->
-
-      <!--          <span>个人设置</span>-->
-      <!--          <div></div>-->
-      <!--        </div>-->
-      <!--      </template>-->
       <el-tabs :tab-position="tabPosition">
         <el-tab-pane label="基本设置">
           <div class="set-title">
             <span>基本设置</span>
           </div>
-          <div class="set-info">
+          <div class="set-info" v-show="roleID===1||roleID===2">
             <div class="form-info">
-              <el-form ref="settingFormRef" :model="settingForm" :rules="rules" label-width="100px"
-                       class="demo-ruleForm">
+              <el-form ref="settingFormRef" :model="settingForm" :rules="rules" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="邮箱" prop="email">
                   <el-input v-model="settingForm.email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
-                <el-form-item label="昵称" prop="nickname">
-                  <el-input v-model="settingForm.nickname" placeholder="请输入昵称" maxlength="10"></el-input>
+                <el-form-item label="姓名" prop="nickname">
+                  <el-input v-model="settingForm.nickname" placeholder="请输入姓名"></el-input>
                 </el-form-item>
                 <el-form-item label="个人简介" prop="desc">
-                  <el-input v-model="settingForm.desc" type="textarea" placeholder="个人简介" maxlength="120"></el-input>
+                  <el-input v-model="settingForm.desc" type="textarea" placeholder="个人简介"></el-input>
                 </el-form-item>
-
                 <el-form-item label="联系电话" prop="mobile">
                   <el-input v-model="settingForm.mobile" placeholder="请输入11位大陆手机号码"></el-input>
                 </el-form-item>
-
                 <el-form-item>
                   <el-button color="#263445" :loading="updateLoading" @click="submitForm()">更新基本信息</el-button>
                   <el-button @click="resetForm()">重置</el-button>
@@ -43,7 +32,54 @@
             <div class="avatar">
               <div class="preview">
                 <span>头像</span>
-                <img src="src/assets/images/img.png"/>
+                <img :src="imgUrl"/>
+              </div>
+              <el-upload
+                  class="avatar-uploader"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload"
+              >
+                <el-button style="margin-left: 10px" color="#263445"><i class="el-icon-upload"></i>更换头像
+                </el-button>
+              </el-upload>
+            </div>
+          </div>
+          <div class="set-info" v-show="roleID===3">
+            <div class="form-info">
+              <el-form ref="settingFormRef" :model="settingForm1" :rules="rules" label-width="100px" class="demo-ruleForm">
+                <el-form-item label="学号" prop="stuID">
+                  <el-input v-model="settingForm1.stuID" placeholder="请输入学号"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" prop="nickname">
+                  <el-input v-model="settingForm1.nickname" placeholder="请输入姓名"></el-input>
+                </el-form-item>
+                <el-form-item label="年级" prop="grade">
+                  <el-input v-model="settingForm1.grade" placeholder="请输入年级"></el-input>
+                </el-form-item>
+                <el-form-item label="班级" prop="class">
+                  <el-input v-model="settingForm1.class" placeholder="请输入班级"></el-input>
+                </el-form-item>
+                <el-form-item label="家长姓名" prop="pname">
+                  <el-input v-model="settingForm1.pname" placeholder="请输入家长姓名"></el-input>
+                </el-form-item>
+                <el-form-item label="家长联系电话" prop="mobile">
+                  <el-input v-model="settingForm1.mobile" placeholder="请输入家长联系电话"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                  <el-input v-model="settingForm1.email" placeholder="请输入邮箱"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button color="#263445" :loading="updateLoading" @click="submitForm()">更新基本信息</el-button>
+                  <el-button @click="resetForm()">重置</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+            <div class="avatar">
+              <div class="preview">
+                <span>头像</span>
+                <img :src="imgUrl"/>
               </div>
               <el-upload
                   class="avatar-uploader"
@@ -72,14 +108,14 @@
           <div class="secure-item">
             <div class="secure-info">
               <span class="secure-key">密保手机</span>
-              <span class="secure-value">已绑定手机：138****2234</span>
+              <span class="secure-value">已绑定手机：{{phone}}</span>
             </div>
             <div class="opera-btn"><span>修改</span></div>
           </div>
           <div class="secure-item">
             <div class="secure-info">
               <span class="secure-key">绑定邮箱</span>
-              <span class="secure-value">已绑定邮箱：geek****@outlook.com</span>
+              <span class="secure-value">已绑定邮箱：{{ email }}</span>
             </div>
             <div class="opera-btn"><span>修改</span></div>
           </div>
@@ -125,17 +161,22 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from 'vue'
+import { onMounted, ref } from 'vue'
 import API from '@/utils/axiosInference'
 
-let settingForm = ref({email: '', nickname: ' ', desc: '', mobile: ' '})
-let tabPosition = ref('left')
+let settingForm = ref({ email: '', nickname: '', desc: '', mobile: '' })
+let settingForm1 = ref({ email: '', nickname: '', desc: '', mobile: '',stuID:'',grade:'',class:'',pname:'' })
 
+let tabPosition = ref('left')
 let userSwitch = ref(false);
 let sysSwitch = ref(false);
 let taskSwitch = ref(false);
 let intensity = ref("较弱")
-
+const token = ref('')
+let imgUrl = ref(require("../../../assets/images/img.png"))
+let phone = ref('')
+let email = ref('')
+let roleID = ref(1)
 
 const validateMobile = (rule, value, callback) => {
   if (value === '') {
@@ -150,41 +191,72 @@ const validateMobile = (rule, value, callback) => {
   }
 }
 
-const rules = {
-  email: [
-    {required: true, message: '请输入邮箱地址', trigger: 'blur'},
-    {type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
-  ],
-  nickname: {required: true, message: '请输入昵称', trigger: ['blur', 'change']},
-  desc: {required: true, message: '请输入个人简介', trigger: ['blur', 'change']},
-  mobile: {required: true, validator: validateMobile, trigger: ['blur', 'change']}
+let check = (val) => {
+  let complexity = 0;
+  if (/\d/.test(val)) {
+    complexity++;
+  }
+  if (/[a-zA-Z]/.test(val)) {
+    complexity++;
+  }
+  if (/[^a-zA-Z0-9]/.test(val)) {
+    complexity++;
+  }
+  return complexity;
 }
 
-let check = (val) => {
-  for (let i = 0; i < val.length; i++) {
 
-  }
-
-  return 1
+const rules = {
+  email: [
+    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+    { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+  ],
+  nickname: { required: true, message: '请输入昵称', trigger: ['blur', 'change'] },
+  desc: { required: true, message: '请输入个人简介', trigger: ['blur', 'change'] },
+  mobile: { required: true, validator: validateMobile, trigger: ['blur', 'change'] }
 }
 
 onMounted(() => {
+  token.value = sessionStorage.getItem('Token')
   API({
-    method: 'post',
-    url: '/user/',
-    data: JSON.parse(sessionStorage.getItem('Token'))
+    method: 'get',
+    url: '/user/profile',
+    headers: {
+      token: token.value
+    }
   }).then(res => {
-    let pwd = res.data.password
+    const data = res.data.data
+    roleID.value = data.role
+    if (roleID.value==1||roleID.value==2){
+      settingForm.value.email = data.email
+      settingForm.value.nickname = data.name
+      settingForm.value.desc = data.introduction
+      settingForm.value.mobile = data.phone
+    }else{
+      settingForm1.value.email = data.email
+      settingForm1.value.nickname = data.name
+      settingForm1.value.desc = data.introduction
+      settingForm1.value.mobile = data.phone
+      settingForm1.value.grade = data.grade
+      settingForm1.value.class = data.class
+      settingForm1.value.stuID = data.studentID
+      settingForm1.value.pname = data.parent
+    }
+    phone.value = data.phone
+    email.value = data.email
+    imgUrl.value = data.avatar
+    let pwd = data.password
     let ret = check(pwd)
-    if (ret === 1) {
+    if (ret === 3) {
       intensity.value = "强"
     } else if (ret === 2) {
       intensity.value = "较强"
-    } else if (ret == 3) {
+    } else if (ret == 1) {
       intensity.value = "弱"
     }
   })
 })
+
 </script>
 
 <style scoped>
@@ -259,7 +331,7 @@ img {
 }
 
 .box-card {
-  margin: 10px auto;;
+  margin: 10px auto;
   width: 80%;
 }
 
