@@ -53,7 +53,7 @@
         <span style="margin-left: 10px">数据可视化</span>
       </el-menu-item>
 
-      <el-menu-item index="/VisualAnalysisT" v-show="roleId==='3'">
+      <el-menu-item index="/VisualAnalysisP" v-show="roleId==='3'">
         <el-icon>
           <DataAnalysis/>
         </el-icon>

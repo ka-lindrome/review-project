@@ -1,8 +1,8 @@
 import {createRouter, createWebHashHistory} from "vue-router"
 
 import Index from '../components/Index'
-import VisualAnalysisP from "@/views/Parent/VisualAnalysisP";
-import VisualAnalysisT from "@/views/Teacher/VisualAnalysisT";
+import VisualAnalysisP from "@/views/Parent/VisualAnalysisP/VisualAnalysisP";
+import VisualAnalysisT from "@/views/Teacher/VisualAnalysisT/analysis";
 import Home from '@/views/Home'
 import Login from '@/views/Login/Login.vue'
 import UploadPapers from '@/views/Teacher/UploadPapers'
