@@ -17,13 +17,6 @@
 
 <script setup>
 import LoginAndRegisterForm from '@/views/Login/components/LoginAndRegisterForm.vue';
-import {useRouter} from 'vue-router';
-import {ref} from 'vue';
-const router = useRouter()
-
-let form = ref({email: '', password: '',vcode:'', role: '1'})
-let showLogin = ref(false)
-
 </script>
 
 <style scoped>

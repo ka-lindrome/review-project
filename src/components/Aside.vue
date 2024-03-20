@@ -132,7 +132,7 @@ import {useRouter} from 'vue-router'
 import API from '@/utils/axiosInference'
 
 const router = useRouter()
-let roleId = ref('1')
+let roleId = ref('3')
 let token = ref('')
 
 
@@ -143,18 +143,18 @@ const props = defineProps({
 })
 
 onMounted(() => {
-
-  token.value = JSON.parse(sessionStorage.getItem('Token'))
-
+  token.value = sessionStorage.getItem('Token')
   API({
-    method: 'post',
-    url: '/user/',
-    data: token.value,
+    method: 'get',
+    url: '/user',
+    headers: {
+    // 将token放在请求头中
+    token: token.value
+  }
   }).then(res => {
     roleId.value = res.data.roleId
   })
   router.push('/Home')
-
 })
 </script>
 

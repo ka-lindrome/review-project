@@ -66,10 +66,10 @@
 
 <script setup>
 // import Breadcrumb from '@/components/BreadCrumb/index'
-import {defineProps, defineEmits, ref} from 'vue'
+import {defineProps, defineEmits, ref ,onMounted} from 'vue'
 import {toFullScreen, exitFullScreen} from "@/utils/ScreenUtils";
 import {useRouter} from 'vue-router'
-
+import API from '@/utils/axiosInference'
 
 const router = useRouter()
 
@@ -84,10 +84,13 @@ let collapse = () => {
   emit('doCollapse');
 }
 
-let username = ref("清河海风dsddd");
+const username = ref("清河海风dsddd");
+
 let imgUrl = ref(require("../assets/images/img.png"))
 
 let fullScreen = ref(false)
+
+let token = ref('')
 
 let toShowFullScreen = () => {
   toFullScreen();
@@ -103,7 +106,24 @@ let messageNum = ref(5)
 let logout = () => {
   router.push('/')
 }
-
+onMounted(() => {
+  console.log("sess1:",sessionStorage);
+  username.value = sessionStorage.getItem("username")
+  imgUrl.value = sessionStorage.getItem("useravatar")
+  console.log("value",username.value,"item",sessionStorage.getItem("username"))
+  // token.value = sessionStorage.getItem('Token')
+  // API({
+  //   method: 'get',
+  //   url: '/user',
+  //   headers: {
+  //   // 将token放在请求头中
+  //   token: token.value
+  // }
+  // }).then(res => {
+  //   username.value = res.data.name
+  //   imgUrl.value = res.data.avatar
+  // })
+})
 
 </script>
 
