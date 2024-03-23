@@ -13,7 +13,7 @@
               <div class="img-box">
                 <img src="./images/成绩分析.png" alt="" />
               </div>
-              <span class="left-number">{{sum}}分</span>
+              <span class="left-number">{{ sum }}分</span>
             </div>
           </el-col>
           <el-col class="mb40" :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
@@ -52,7 +52,7 @@
             <div class="item-right">
               <div class="echarts-title">各科成绩分布</div>
               <div class="book-echarts">
-                <Pie ref="pieRef"/>
+                <Pie ref="pieRef" />
               </div>
             </div>
           </el-col>
@@ -67,7 +67,7 @@
         </el-tabs>
       </div>
       <div class="curve-echarts">
-        <Curve ref="curveRef"/>
+        <Curve ref="curveRef" />
       </div>
     </div>
   </div>
@@ -87,10 +87,10 @@ const token = ref('');
 token.value = sessionStorage.getItem('Token');
 
 API({
-  methods:'get',
-  url:'/data/p/rank',
-  headers:{
-    token:token.value
+  methods: 'get',
+  url: '/data/p/rank',
+  headers: {
+    token: token.value
   }
 }).then(res => {
   classrank.value = res.data.data["class"]

@@ -1,125 +1,51 @@
 <template>
   <div class="analysis-info">
-    <el-row style="margin: 15px">
-      <el-col :span="24" class="page-title-box">
-        <h4 class="page-title">学生成绩分析</h4>
-        <div class="page-title-right">
-          <div style="margin-right: 10px"><el-date-picker v-model="pickDate" type="date" placeholder="选择日期"> </el-date-picker></div>
-          <el-button :icon="Refresh" circle type="primary" style="margin-left: 10px"></el-button>
-          <el-button :icon="Search" circle type="primary"></el-button>
+    <el-row :gutter="40" style="margin-top: 1%;">
+      <el-col class="mb40" :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <div class="item-left sle">
+          <span class="left-title">相比上次考试</span>
+          <div class="img-box">
+            <img src="./images/down.png" alt="" />
+          </div>
+          <span class="left-number" style="margin-top: 10%;">班级排名下降2名</span>
         </div>
       </el-col>
-    </el-row>
-    <el-row>
-      <el-col :xl="10">
-        <el-row>
-          <el-col :lg="12">
-            <el-card shadow="hover" class="card">
-              <div class="card-header">
-                <h4 class="text-muted">班级平均分</h4>
-                <i class="widget-icon"><ShoppingCartFull /></i>
-              </div>
-              <div class="card-middle margin-top-2 margin-bottom-2">
-                <h3>117.38分</h3>
-              </div>
-              <div class="card-footer text-muted">
-                <span class="text-success margin-right-1"><Top />4.71%</span>
-                <span class="text-nowrap">跟上次考试相比 </span>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :lg="12">
-            <el-card shadow="hover" class="card">
-              <div class="card-header">
-                <h4 class="text-muted">班级排名</h4>
-                <i class="widget-icon"><GoodsFilled /></i>
-              </div>
-              <div class="card-middle margin-top-2 margin-bottom-2">
-                <h3>12</h3>
-              </div>
-              <div class="card-footer text-muted">
-                <span class="text-danger margin-right-1"><Top />5 名</span>
-                <span class="text-nowrap">跟上次考试相比 </span>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :lg="12">
-            <el-card shadow="hover" class="card">
-              <div class="card-header">
-                <h5 class="text-muted">Revenue</h5>
-
-                <i class="widget-icon"><Coin /></i>
-              </div>
-              <div class="card-middle margin-top-2 margin-bottom-2">
-                <h3>￥3,258</h3>
-              </div>
-              <div class="card-footer text-muted">
-                <span class="text-danger margin-right-1"><Top />3.28%</span>
-                <span class="text-nowrap">since last week </span>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :lg="12">
-            <el-card shadow="hover" class="card">
-              <div class="card-header">
-                <h5 class="text-muted">Growth</h5>
-                <i class="widget-icon"><DataLine /></i>
-              </div>
-              <div class="card-middle margin-top-2 margin-bottom-2">
-                <h3>+ 20.48%</h3>
-              </div>
-              <div class="card-footer text-muted">
-                <span class="text-success margin-right-1"><Top />5.28%</span>
-                <span class="text-nowrap">since last week </span>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
+      <el-col class="mb40" :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
+        <div class="item-center">
+          <div class="gitee-traffic traffic-box">
+            <div class="traffic-img">
+              <img src="./images/分数排名-copy.png" alt="" />
+            </div>
+            <span class="item-value">10</span>
+            <span class="traffic-name sle">考试年级排名</span>
+          </div>
+          <div class="gitHub-traffic traffic-box">
+            <div class="traffic-img">
+              <img src="./images/平均分配.png" alt="" />
+            </div>
+            <span class="item-value">837</span>
+            <span class="traffic-name sle">班级平均分</span>
+          </div>
+          <div class="today-traffic traffic-box">
+            <div class="traffic-img">
+              <img src="./images/today.png" alt="" />
+            </div>
+            <span class="item-value">45</span>
+            <span class="traffic-name sle">今日阅卷数</span>
+          </div>
+          <div class="yesterday-traffic traffic-box">
+            <div class="traffic-img">
+              <img src="./images/昨天.png" alt="" />
+            </div>
+            <span class="item-value">36</span>
+            <span class="traffic-name sle">昨日阅卷数</span>
+          </div>
+        </div>
       </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="8">
-        <el-card shadow="hover" class="card">
-          <div class="header-title">
-            <h4 class="text-muted">Revene by Location</h4>
-            <div class="dropdown"><MoreFilled /></div>
-          </div>
-          <div class="margin-top-2 margin-bottom-2">
-            <h5 class="font-nomal margin-bottom- text-left">New York</h5>
-            <el-progress class="margin-bottom-pro" :percentage="70"><span>70k</span></el-progress>
-            <h5 class="font-nomal margin-bottom text-left">San Francisco</h5>
-            <el-progress class="margin-bottom-pro" :percentage="60"><span>60k</span></el-progress>
-            <h5 class="font-nomal margin-bottom text-left">Sydney</h5>
-            <el-progress class="margin-bottom-pro" :percentage="50"><span>50k</span></el-progress>
-            <h5 class="font-nomal margin-bottom text-left">Singapore</h5>
-            <el-progress class="margin-bottom-pro" :percentage="30"><span>30k</span></el-progress>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :xl="12">
-        <el-card shadow="hover" class="card">
-          <div class="header-title" style="margin-bottom: 32px">
-            <h4 class="text-muted">TOP SELLING PRODUCTS</h4>
-            <div class="btn-link" @click="handleExportExcel"><span style="margin-right: 5px; display: inline-block">Export</span><i class="el-icon-download"></i></div>
-          </div>
-          <el-table id="tableId" ref="tableRef" :data="state.tableData" highlight-current-row style="width: 100%">
-            <el-table-column v-for="item in tableColumn" :key="item.prop" :fixed="item.fixed" :prop="item.prop" :label="item.label" :width="item.width"> </el-table-column>
-          </el-table>
-        </el-card>
-      </el-col>
-      <el-col :xl="6">
-        <el-card shadow="hover" class="card">
-          <div class="header-title">
-            <h4 class="text-muted">各个分数段占比</h4>
-            <div class="dropdown"><MoreFilled /></div>
-          </div>
+      <el-col :xs="24" :sm="24" :md="24" :lg="10" :xl="10">
+        <div class="card1">
+          <div class="header-title">各个分数段占比</div>
           <div class="e-chart" style="height: 201px; width: 100%">
-            <!-- <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-              </div> -->
             <div ref="refAverageSales" style="width: inherit; height: inherit"></div>
           </div>
           <div class="chart-widget-list">
@@ -136,154 +62,149 @@
               <span><i class="icon-square red"></i> 不及格 </span><span>5 人</span>
             </p>
           </div>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row style="margin-top: 3%;">
+      <div style="display: flex; justify-content: center; width: 100%;">
+        <a style="margin-top: 5px; margin-right: 2%; font-weight: bold;">选择不同学科折线图显示</a>
+        <el-select v-model="selectedValue" placeholder="请选择学科" style="width: 240px">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <Line ref="lineRef" />
+    </el-row>
+    <el-row style="margin-top: 3%;">
+      <el-col>
+        <el-card shadow="hover" class="card" style="display: flex; justify-content: center; align-items: center;">
+          <div class="header-title" style="margin-bottom: 32px">
+            <h3 class="text-muted">学生成绩表</h3>
+            <div class="btn-link" @click="handleExportExcel"><span
+                style="margin-right: 5px; display: inline-block">导出</span><i class="el-icon-download"></i></div>
+          </div>
+          <el-table id="tableId" ref="tableRef" :data="state.tableData" highlight-current-row style="width: 100%">
+            <el-table-column v-for="item in tableColumn" :key="item.prop" :fixed="item.fixed" :prop="item.prop"
+              :label="item.label" :width="item.width"> </el-table-column>
+          </el-table>
         </el-card>
       </el-col>
     </el-row>
   </div>
 </template>
+
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
-import { Top, MoreFilled, ShoppingCartFull, Refresh, Search, GoodsFilled, Coin, DataLine } from '@element-plus/icons-vue'
-
-import XLSX from 'xlsx'
 import { useInitPieChart } from './useInitPieCharts'
+import API from '@/utils/axiosInference';
+import Line from './components/line.vue'
 
-const stateTypes = {
-  tableData: [
-    {
-      date: "",
-      name: "",
-      province: "",
-      city: "",
-      address: "",
-      zip: 0
-    }
-  ],
-  form: {
-    fileName: "",
-    fileType: ""
-  }
-};
-
-const pickDate = ref('');
-const refProduct = ref();
-const refLineChart = ref();
 const refAverageSales = ref();
+const token = ref('');
+token.value = sessionStorage.getItem('Token');
+const selectedValue = ref(null);
+const options = [
+    { label: '语文', value: '1' },
+    { label: '数学', value: '2' },
+    { label: '英语', value: '3' },
+    { label: '物理', value: '4' },
+    { label: '化学', value: '5' },
+    { label: '生物', value: '6' },
+    { label: '历史', value: '7' },
+    { label: '地理', value: '8' },
+    { label: '政治', value: '9' },
+];
+
+API({
+  methods: 'get',
+  url: '/data/t/all',
+  headers: {
+    token: token.value
+  }
+}).then(res => {
+  state.tableData = res.data.data
+})
+
 const state = reactive({
-  tableData: [
-    {
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },
-    {
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },
-    {
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },
-    {
-      date: '2016-05-04',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1517 弄',
-      zip: 200333
-    },
-    {
-      date: '2016-05-01',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1519 弄',
-      zip: 200333
-    },
-    {
-      date: '2016-05-03',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1516 弄',
-      zip: 200333
-    }
-  ],
+  tableData: [],
   form: {
     fileName: 'exportExcel',
     fileType: 'xlsx'
   }
 });
-const activities = [
-  {
-    content: '支持使用图标',
-    timestamp: '2018-04-12 20:46',
-    size: 'large',
-    type: 'primary',
-    icon: 'el-icon-more'
-  },
-  {
-    content: '支持自定义颜色',
-    timestamp: '2018-04-03 20:46',
-    color: '#0bbd87'
-  },
-  {
-    content: '支持自定义尺寸',
-    timestamp: '2018-04-03 20:46',
-    size: 'large'
-  },
-  {
-    content: '默认样式的节点',
-    timestamp: '2018-04-03 20:46'
-  }
-];
+
 const tableColumn = [
   {
-    prop: 'date',
-    fixed: true,
-    width: '150',
-    label: '日期'
-  },
-  {
     prop: 'name',
-    fixed: false,
-    width: '120',
+    fixed: true,
+    width: '130',
     label: '姓名'
   },
   {
-    prop: 'province',
+    prop: 'sid',
     fixed: false,
-    width: '120',
-    label: '省份'
+    width: '170',
+    label: '学号'
   },
   {
-    prop: 'city',
+    prop: 'yw',
     fixed: false,
-    width: '120',
-    label: '市区'
+    width: '110',
+    label: '语文'
   },
   {
-    prop: 'address',
+    prop: 'sx',
     fixed: false,
-    width: '400',
-    label: '地址'
+    width: '110',
+    label: '数学'
   },
   {
-    prop: 'zip',
+    prop: 'yy',
     fixed: false,
-    width: '120',
-    label: '邮编'
+    width: '110',
+    label: '英语'
+  },
+  {
+    prop: 'wl',
+    fixed: false,
+    width: '110',
+    label: '物理'
+  },
+  {
+    prop: 'hx',
+    fixed: false,
+    width: '110',
+    label: '化学'
+  },
+  {
+    prop: 'sw',
+    fixed: false,
+    width: '110',
+    label: '生物'
+  },
+  {
+    prop: 'ls',
+    fixed: false,
+    width: '110',
+    label: '历史'
+  },
+  {
+    prop: 'dl',
+    fixed: false,
+    width: '110',
+    label: '地理'
+  },
+  {
+    prop: 'zz',
+    fixed: false,
+    width: '110',
+    label: '政治'
+  },
+  {
+    prop: 'zf',
+    fixed: false,
+    width: '100',
+    label: '总分'
   }
 ];
 
@@ -321,235 +242,6 @@ onMounted(() => {
 
 </script>
 
-<style lang="stylus" scoped>
-.analysis-info{
-  color black
-  padding 0px 20px
-  background-color #fafbfe
-
-  .page-title-box{
-    box-sizing border-box
-    display flex
-    flex-direction row
-    justify-content space-between
-    align-items center
-    color #6c757d
-    .page-title{
-      font-size  18px
-      margin  0
-      line-height  85px
-      overflow  hidden
-      white-space: nowrap
-      text-overflow  ellipsis
-      color  inherit
-      font-weight 700
-    }
-    .page-title-right{
-      display flex
-      flex-direction row
-      justify-content space-around
-      align-items center
-    }
-  }
-  :deep(.el-card){
-    margin-bottom 30px
-    margin-right 20px
-  }
-  :deep(.el-card.bg-primary){
-    background-color #46a0fc
-  }
-  :deep(.text-white.el-icon-more){
-    color white
-  }
-  .card {
-    .padding-top-1{
-      padding-top  10px
-    }
-    .padding-bottom-1{
-      padding-bottom  10px
-    }
-    .margin-bottom-pro{
-      margin-bottom 15px
-    }
-    .margin-right-1{
-      margin-right 10px
-    }
-    .margin-top-2{
-      margin-top 20px
-    }
-     .margin-bottom-1{
-      margin-bottom 10px
-    }
-    .margin-bottom-2{
-      margin-bottom 20px
-    }
-    .font-nomal{
-      font-weight 400
-    }
-    .icon{
-      width 14px
-      height 14px
-      display inline-block
-      border-radius 50%
-    }
-    .text-muted{
-        color #98a6ad
-      }
-      .text-left{
-        text-align left
-      }
-      .text-nowrap{
-        white-space nowrap
-      }
-      .text-success{
-        color #0acf97
-      }
-      .text-danger{
-        color #fa5c7c
-      }
-      .text-primary{
-        color #409eff
-      }
-      .text-light{
-        color #e3eaef
-      }
-      .text-white{
-        color white
-      }
-      .text-center{
-        display flex
-        flex-direction row
-        justify-content center
-        align-items center
-      }
-      .text-badge{
-        margin-top 20px
-        margin-bottom  10px
-      }
-      .font-13{
-        font-size 13px
-      }
-      .badge{
-        display: inline-block;
-        padding: 0.25em 0.4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25rem;
-        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-      }
-      .badge-danger{
-        color #fff
-        background-color #fa5c7c
-      }
-      .btn-link{
-        font-weight 400
-        color #409eff
-        text-decoration none
-        cursor pointer
-      }
-      .bg-primary{
-        background-color #409eff
-      }
-      .bg-green{
-        background-color green
-      }
-      .icon-square{
-        width 12px
-        height 12px
-        display inline-block
-      }
-      .red{
-        background-color #ec6769
-      }
-      .green{
-        background-color  #93cb79
-      }
-      .yellow {
-        background-color #f9c761
-      }
-      .deep-blue{
-        background-color #5572c3
-      }
-      .dot{
-        width 12px
-        height 12px
-        display inline-block
-        border-radius 50%
-      }
-      .chart-widget-list p{
-        border-bottom 1px solid #f1f3fa
-        margin-bottom 0.5rem
-        padding-bottom 0.5rem
-        display flex
-        flex-direction row
-        justify-content space-between
-        align-items center
-      }
-    .header-title{
-      display flex
-      flex-direction row
-      justify-content space-between
-      align-items center
-      margin-bottom 5px
-      .dropdown{
-        cursor pointer
-      }
-    }
-    .chart-bg{
-      background-color #f9f9fd
-    }
-    .card-header{
-      display flex
-      flex-direction row
-      justify-content space-between
-      align-items flex-start
-
-      .widget-icon{
-        color #248fed
-        font-size 20px
-        background-color #7fbdf33b
-        height 40px
-        width 40px
-        text-align: center
-        line-height 40px
-        border-radius 3px
-        display flex
-        flex-direction column
-        justify-content center
-        align-items center
-        .icon{
-          width 20px
-          height 20px
-        }
-      }
-    }
-    .card-middle{
-      display flex
-      flex-direction row
-      justify-content flex-start
-      align-items center
-      color #6c757d
-    }
-    .card-footer{
-      display flex
-      flex-direction row
-      justify-content flex-start
-      align-items center
-    }
-
-    .e-chart{
-      margin auto
-      position relative
-      width 100%
-    }
-  }
-
-}
+<style scoped lang="scss">
+@import "./index.scss";
 </style>
