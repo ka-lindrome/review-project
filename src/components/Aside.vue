@@ -108,6 +108,13 @@
         </el-icon>
         <span style="margin-left: 10px">智能机器人</span>
       </el-menu-item>
+<!-- 
+      <el-menu-item index="/KnowledgeBase" v-show="roleId != '2'">
+        <el-icon>
+          <Knowledge />
+        </el-icon>
+        <span style="margin-left: 10px">知识库</span>
+      </el-menu-item> -->
 
 
     </el-menu>

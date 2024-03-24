@@ -153,7 +153,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, data } from 'vue'
+import { onMounted, ref} from 'vue'
 import API from '@/utils/axiosInference'
 
 let settingForm = ref({ email: '', nickname: '', desc: '', mobile: '' })
