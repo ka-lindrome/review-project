@@ -8,9 +8,10 @@
           <div class="set-title">
             <span>基本设置</span>
           </div>
-          <div class="set-info" v-show="roleID===1||roleID===2">
+          <div class="set-info" v-show="roleID === 1 || roleID === 2">
             <div class="form-info">
-              <el-form ref="settingFormRef" :model="settingForm" :rules="rules" label-width="100px" class="demo-ruleForm">
+              <el-form ref="settingFormRef" :model="settingForm" :rules="rules" label-width="100px"
+                class="demo-ruleForm">
                 <el-form-item label="邮箱" prop="email">
                   <el-input v-model="settingForm.email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
@@ -32,23 +33,19 @@
             <div class="avatar">
               <div class="preview">
                 <span>头像</span>
-                <img :src="imgUrl"/>
+                <img :src="imgUrl" />
               </div>
-              <el-upload
-                  class="avatar-uploader"
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload"
-              >
+              <el-upload class="avatar-uploader" action="http://10.22.232.237:8081/user/avatar_file" method="put" :headers="headers"
+                :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                 <el-button style="margin-left: 10px" color="#263445"><i class="el-icon-upload"></i>更换头像
                 </el-button>
               </el-upload>
             </div>
           </div>
-          <div class="set-info" v-show="roleID===3">
+          <div class="set-info" v-show="roleID === 3">
             <div class="form-info">
-              <el-form ref="settingFormRef" :model="settingForm1" :rules="rules" label-width="100px" class="demo-ruleForm">
+              <el-form ref="settingFormRef" :model="settingForm1" :rules="rules" label-width="100px"
+                class="demo-ruleForm">
                 <el-form-item label="学号" prop="stuID">
                   <el-input v-model="settingForm1.stuID" placeholder="请输入学号"></el-input>
                 </el-form-item>
@@ -79,15 +76,10 @@
             <div class="avatar">
               <div class="preview">
                 <span>头像</span>
-                <img :src="imgUrl"/>
+                <img :src="imgUrl" />
               </div>
-              <el-upload
-                  class="avatar-uploader"
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload"
-              >
+              <el-upload class="avatar-uploader" action="http://10.22.232.237:8081/user/avatar_file" method="put" :headers="headers"
+                :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
                 <el-button style="margin-left: 10px" color="#263445"><i class="el-icon-upload"></i>更换头像
                 </el-button>
               </el-upload>
@@ -108,7 +100,7 @@
           <div class="secure-item">
             <div class="secure-info">
               <span class="secure-key">密保手机</span>
-              <span class="secure-value">已绑定手机：{{phone}}</span>
+              <span class="secure-value">已绑定手机：{{ phone }}</span>
             </div>
             <div class="opera-btn"><span>修改</span></div>
           </div>
@@ -131,7 +123,7 @@
             </div>
             <el-tooltip :content="'是否开启用户信息: '" placement="top">
               <el-switch v-model="userSwitch" active-color="#13ce66" inactive-color="#ff4949" :active-value="true"
-                         :inactive-value="false" style="margin-right: 30px"></el-switch>
+                :inactive-value="false" style="margin-right: 30px"></el-switch>
             </el-tooltip>
           </div>
           <div class="secure-item">
@@ -141,7 +133,7 @@
             </div>
             <el-tooltip :content="'是否开启系统消息: '" placement="top">
               <el-switch v-model="sysSwitch" active-color="#13ce66" inactive-color="#ff4949" :active-value="true"
-                         :inactive-value="false" style="margin-right: 30px"></el-switch>
+                :inactive-value="false" style="margin-right: 30px"></el-switch>
             </el-tooltip>
           </div>
           <div class="secure-item">
@@ -151,7 +143,7 @@
             </div>
             <el-tooltip :content="'是否开启代办任务消息: '" placement="top">
               <el-switch v-model="taskSwitch" active-color="#13ce66" inactive-color="#ff4949" :active-value="true"
-                         :inactive-value="false" style="margin-right: 30px"></el-switch>
+                :inactive-value="false" style="margin-right: 30px"></el-switch>
             </el-tooltip>
           </div>
         </el-tab-pane>
@@ -161,11 +153,11 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, data } from 'vue'
 import API from '@/utils/axiosInference'
 
 let settingForm = ref({ email: '', nickname: '', desc: '', mobile: '' })
-let settingForm1 = ref({ email: '', nickname: '', desc: '', mobile: '',stuID:'',grade:'',class:'',pname:'' })
+let settingForm1 = ref({ email: '', nickname: '', desc: '', mobile: '', stuID: '', grade: '', class: '', pname: '' })
 
 let tabPosition = ref('left')
 let userSwitch = ref(false);
@@ -177,6 +169,27 @@ let imgUrl = ref(require("../../../assets/images/img.png"))
 let phone = ref('')
 let email = ref('')
 let roleID = ref(1)
+
+const beforeAvatarUpload = (file) => {
+  const isJPG = file.type === 'image/jpeg';
+  const isLt2M = file.size / 1024 / 1024 < 2;
+
+  if (!isJPG) {
+    $message.error('上传头像图片只能是 JPG 格式!');
+  }
+  if (!isLt2M) {
+    $message.error('上传头像图片大小不能超过 2MB!');
+  }
+  return isJPG && isLt2M;
+};
+
+const handleAvatarSuccess = (response, file) => {
+ 
+};
+
+const headers = {
+  token: token.value
+}
 
 const validateMobile = (rule, value, callback) => {
   if (value === '') {
@@ -218,6 +231,7 @@ const rules = {
 
 onMounted(() => {
   token.value = sessionStorage.getItem('Token')
+  headers.token = sessionStorage.getItem('Token')
   API({
     method: 'get',
     url: '/user/profile',
@@ -227,12 +241,12 @@ onMounted(() => {
   }).then(res => {
     const data = res.data.data
     roleID.value = data.role
-    if (roleID.value==1||roleID.value==2){
+    if (roleID.value == 1 || roleID.value == 2) {
       settingForm.value.email = data.email
       settingForm.value.nickname = data.name
       settingForm.value.desc = data.introduction
       settingForm.value.mobile = data.phone
-    }else{
+    } else {
       settingForm1.value.email = data.email
       settingForm1.value.nickname = data.name
       settingForm1.value.desc = data.introduction
@@ -334,5 +348,4 @@ img {
   margin: 10px auto;
   width: 80%;
 }
-
 </style>

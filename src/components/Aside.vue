@@ -2,35 +2,27 @@
 
   <div>
     <div style="height: 60px;background-color: #358bcd;"></div>
-    <el-menu
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#1890FF"
-        style="height: 100%;"
-        default-active="/Home"
-        :collapse="isCollapse"
-        :collapse-transition="false"
-        router
-    >
+    <el-menu background-color="#545c64" text-color="#fff" active-text-color="#1890FF" style="height: 100%;"
+      default-active="/Home" :collapse="isCollapse" :collapse-transition="false" router>
 
       <el-menu-item index="/Home">
         <el-icon>
-          <House/>
+          <House />
         </el-icon>
         <span style="margin-left: 10px;">首页</span>
       </el-menu-item>
 
-      <el-sub-menu index="2" v-show="roleId==='1'">
+      <el-sub-menu index="2" v-show="roleId === '1'">
         <template #title>
           <el-icon>
-            <Star/>
+            <Star />
           </el-icon>
           <span>人员管理</span>
         </template>
 
         <el-menu-item index="/ManageTeacher">
           <el-icon>
-            <User/>
+            <User />
           </el-icon>
           <span style="margin-left: 10px">教职工人员</span>
         </el-menu-item>
@@ -38,7 +30,7 @@
 
         <el-menu-item index="/ManageParent">
           <el-icon>
-            <User/>
+            <User />
           </el-icon>
           <span style="margin-left: 10px">用户人员</span>
         </el-menu-item>
@@ -46,24 +38,24 @@
       </el-sub-menu>
 
 
-      <el-menu-item index="/VisualAnalysisT" v-show="roleId==='2'">
+      <el-menu-item index="/VisualAnalysisT" v-show="roleId === '2'">
         <el-icon>
-          <DataAnalysis/>
+          <DataAnalysis />
         </el-icon>
         <span style="margin-left: 10px">数据可视化</span>
       </el-menu-item>
 
-      <el-menu-item index="/VisualAnalysisP" v-show="roleId==='3'">
+      <el-menu-item index="/VisualAnalysisP" v-show="roleId === '3'">
         <el-icon>
-          <DataAnalysis/>
+          <DataAnalysis />
         </el-icon>
         <span style="margin-left: 10px">数据可视化</span>
       </el-menu-item>
 
 
-      <el-menu-item index="/UploadPapers" v-show="roleId==='2'">
+      <el-menu-item index="/UploadPapers" v-show="roleId === '2'">
         <el-icon>
-          <FolderOpened/>
+          <FolderOpened />
         </el-icon>
         <span style="margin-left: 10px">文件上传</span>
       </el-menu-item>
@@ -72,14 +64,14 @@
       <el-sub-menu index="1">
         <template #title>
           <el-icon>
-            <location/>
+            <location />
           </el-icon>
           <span>个人页</span>
         </template>
 
         <el-menu-item index="/PersonCenter">
           <el-icon>
-            <User/>
+            <User />
           </el-icon>
           <span style="margin-left: 10px">个人中心</span>
         </el-menu-item>
@@ -87,7 +79,7 @@
 
         <el-menu-item index="/PersonSetting">
           <el-icon>
-            <Setting/>
+            <Setting />
           </el-icon>
           <span style="margin-left: 10px">个人设置</span>
         </el-menu-item>
@@ -95,24 +87,24 @@
       </el-sub-menu>
 
 
-      <el-menu-item index="/TestDataBaseT" v-show="roleId==='2'">
+      <el-menu-item index="/TestDataBaseT" v-show="roleId === '2'">
         <el-icon>
-          <Document/>
+          <Document />
         </el-icon>
         <span style="margin-left: 10px">题库</span>
       </el-menu-item>
 
 
-      <el-menu-item index="/TestDataBaseP" v-show="roleId==='3'">
+      <el-menu-item index="/TestDataBaseP" v-show="roleId === '3'">
         <el-icon>
-          <Document/>
+          <Document />
         </el-icon>
         <span style="margin-left: 10px">题库</span>
       </el-menu-item>
 
-      <el-menu-item index="/AIRobot" v-show="roleId!='1'">
+      <el-menu-item index="/AIRobot" v-show="roleId != '1'">
         <el-icon>
-          <Cpu/>
+          <Cpu />
         </el-icon>
         <span style="margin-left: 10px">智能机器人</span>
       </el-menu-item>
@@ -125,8 +117,8 @@
 </template>
 
 <script setup>
-import {defineProps, onMounted, ref} from 'vue'
-import {useRouter} from 'vue-router'
+import { defineProps, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import API from '@/utils/axiosInference'
 
 const router = useRouter()
@@ -146,9 +138,9 @@ onMounted(() => {
     method: 'get',
     url: '/user',
     headers: {
-    // 将token放在请求头中
-    token: token.value
-  }
+      // 将token放在请求头中
+      token: token.value
+    }
   }).then(res => {
     roleId.value = res.data.data.roleID.toString()
   })
@@ -175,6 +167,4 @@ onMounted(() => {
 .el-sub-menu .el-menu-item:hover {
   background-color: #001529 !important;
 }
-
-
 </style>
