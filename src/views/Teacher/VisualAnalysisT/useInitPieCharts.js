@@ -45,10 +45,10 @@ export const useInitPieChart = (chartDom) => {
           show: false
         },
         data: [
-          { value: 3, name: '130分以上' },
-          { value: 15, name: '110分 ~ 129分' },
-          { value: 26, name: '90分 ~ 109分' },
-          { value: 5, name: '不及格' }
+          { value: 3, name: '900分以上' },
+          { value: 15, name: '750分 ~ 900分' },
+          { value: 26, name: '600分 ~ 750分' },
+          { value: 5, name: '750分以下' }
         ]
       }
     ]

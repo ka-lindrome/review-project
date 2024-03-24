@@ -50,36 +50,29 @@
           </div>
           <div class="chart-widget-list">
             <p>
-              <span><i class="icon-square yellow"></i> 130分以上 </span><span>3 人</span>
+              <span><i class="icon-square yellow"></i> 900分以上 </span><span>3 人</span>
             </p>
             <p>
-              <span><i class="icon-square green"></i> 110分 ~ 129分 </span><span>15 人</span>
+              <span><i class="icon-square green"></i> 750分 ~ 900分 </span><span>15 人</span>
             </p>
             <p>
-              <span><i class="icon-square deep-blue"></i> 90分 ~ 109分</span> <span>26 人</span>
+              <span><i class="icon-square deep-blue"></i> 600分 ~ 750分</span> <span>26 人</span>
             </p>
             <p>
-              <span><i class="icon-square red"></i> 不及格 </span><span>5 人</span>
+              <span><i class="icon-square red"></i> 600分以下 </span><span>5 人</span>
             </p>
           </div>
         </div>
       </el-col>
     </el-row>
     <el-row style="margin-top: 3%;">
-      <div style="display: flex; justify-content: center; width: 100%;">
-        <a style="margin-top: 5px; margin-right: 2%; font-weight: bold;">选择不同学科折线图显示</a>
-        <el-select v-model="selectedValue" placeholder="请选择学科" style="width: 240px">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </div>
       <Line ref="lineRef" />
     </el-row>
     <el-row style="margin-top: 3%;">
       <el-col>
         <el-card shadow="hover" class="card" style="display: flex; justify-content: center; align-items: center;">
           <div class="header-title" style="margin-bottom: 32px">
-            <h3 class="text-muted">学生成绩表</h3>
+            <h3 class="text-muted">本次考试学生成绩表</h3>
             <div class="btn-link" @click="handleExportExcel"><span
                 style="margin-right: 5px; display: inline-block">导出</span><i class="el-icon-download"></i></div>
           </div>
@@ -102,18 +95,6 @@ import Line from './components/line.vue'
 const refAverageSales = ref();
 const token = ref('');
 token.value = sessionStorage.getItem('Token');
-const selectedValue = ref(null);
-const options = [
-    { label: '语文', value: '1' },
-    { label: '数学', value: '2' },
-    { label: '英语', value: '3' },
-    { label: '物理', value: '4' },
-    { label: '化学', value: '5' },
-    { label: '生物', value: '6' },
-    { label: '历史', value: '7' },
-    { label: '地理', value: '8' },
-    { label: '政治', value: '9' },
-];
 
 API({
   methods: 'get',
