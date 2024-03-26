@@ -1,8 +1,12 @@
 .dataVisualize-box {
+  padding: 13px;
   .top-box {
     box-sizing: border-box;
-    padding: 25px 40px 0;
+    padding: 25px 40px 25px;
     margin-bottom: 10px;
+    border: 1px solid #eaeaea; /* 添加边框 */
+    border-radius: 10px; /* 添加圆角 */
+    background-color: #fff; /* 添加背景色 */
     .top-title {
       margin-bottom: 10px;
       font-family: DIN;
@@ -133,7 +137,12 @@
   }
   .bottom-box {
     position: relative;
-    padding: 20px 0 0;
+    padding: 25px 0 0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #eaeaea; /* 添加边框 */
+    border-radius: 10px; /* 添加圆角 */
+    background-color: #fff; /* 添加背景色 */
     .bottom-title {
       position: absolute;
       top: 75px;

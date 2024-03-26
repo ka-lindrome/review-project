@@ -1,18 +1,3 @@
-/*
- * @Author: GeekQiaQia
- * @Date: 2021-12-31 14:08:19
- * @LastEditTime: 2022-02-21 18:05:15
- * @LastEditors: GeekQiaQia
- * @Description:
- * @FilePath: /test-vue3/src/hooks/useExportExcel.ts
- */
-
-/**
- * @description
- * https://www.npmjs.com/package/xlsx#writing-examples
- *
- */
-
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
 

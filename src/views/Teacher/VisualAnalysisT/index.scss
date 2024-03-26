@@ -2,136 +2,153 @@
     color: black;
     text-align: center;
     box-sizing: border-box;
-    padding: 25px 40px 0;
+    padding: 13px;
     margin-bottom: 10px;
 
     .el-card {
         width: 100%;
         margin: 0 auto;
     }
-
-    .item-left {
+        
+    .middle_box{
         box-sizing: border-box;
-        height: 100%;
-        padding: 40px 0 30px 30px;
-        overflow: hidden;
-        color: #ffffff;
-        background: url("./images/book-bg.png");
-        background-position: 50%;
-        background-size: cover;
-        border-radius: 20px;
-
-        .left-title {
-            font-family: DIN;
-            font-size: 20px;
-            display: block;
-            /* 将元素设置为块级元素 */
-            text-align: left;
-            /* 设置文本左对齐 */
-        }
-
-        .img-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 90px;
-            height: 90px;
-            margin: 40px 0 20px;
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
-
-            img {
-                width: 60px;
-                height: 65px;
-            }
-        }
-
-        .left-number {
-            overflow: hidden;
-            font-family: DIN;
-            font-size: 40px;
-            display: block;
-            /* 将元素设置为块级元素 */
-            text-align: left;
-            /* 设置文本左对齐 */
-        }
+        padding: 25px 40px 25px;
+        margin-bottom: 10px;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        background-color: #fff;
     }
 
-    .item-center {
-        display: flex;
-        flex-wrap: wrap;
-        place-content: space-between space-between;
-        height: 100%;
-
-        .traffic-box {
+    .top_box {
+        box-sizing: border-box;
+        padding: 25px 40px 25px;
+        margin-bottom: 10px;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        background-color: #fff;
+        .item-left {
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            /* 将内容垂直对齐方式设置为顶部对齐 */
-            align-items: flex-start;
-            /* 将内容水平对齐方式设置为左对齐 */
-            width: 47%;
-            height: 48%;
-            padding: 25px;
-            border-radius: 30px;
+            height: 100%;
+            padding: 40px 0 30px 30px;
+            overflow: hidden;
+            color: #ffffff;
+            background: url("./images/book-bg.png");
+            background-position: 50%;
+            background-size: cover;
+            border-radius: 20px;
 
-            .traffic-img {
+            .left-title {
+                font-family: DIN;
+                font-size: 20px;
+                display: block;
+                /* 将元素设置为块级元素 */
+                text-align: left;
+                /* 设置文本左对齐 */
+            }
+
+            .img-box {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 70px;
-                height: 70px;
-                margin-bottom: 10px;
+                width: 90px;
+                height: 90px;
+                margin: 40px 0 20px;
                 background-color: #ffffff;
-                border-radius: 19px;
+                border-radius: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+
+                img {
+                    width: 60px;
+                    height: 65px;
+                }
+            }
+
+            .left-number {
+                overflow: hidden;
+                font-family: DIN;
+                font-size: 40px;
+                display: block;
+                /* 将元素设置为块级元素 */
+                text-align: left;
+                /* 设置文本左对齐 */
             }
         }
 
-        img {
-            width: 33px;
-            height: 33px;
-        }
+        .item-center {
+            display: flex;
+            flex-wrap: wrap;
+            place-content: space-between space-between;
+            height: 100%;
 
-        .item-value {
-            margin-bottom: 4px;
-            font-family: DIN;
-            font-size: 28px;
-            font-weight: bold;
-            color: #1a1a37;
-        }
+            .traffic-box {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                /* 将内容垂直对齐方式设置为顶部对齐 */
+                align-items: flex-start;
+                /* 将内容水平对齐方式设置为左对齐 */
+                width: 47%;
+                height: 48%;
+                padding: 25px;
+                border-radius: 30px;
 
-        .traffic-name {
-            overflow: hidden;
-            font-family: DIN;
-            font-size: 15px;
-            color: #1a1a37;
-            white-space: nowrap;
-        }
+                .traffic-img {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 70px;
+                    height: 70px;
+                    margin-bottom: 10px;
+                    background-color: #ffffff;
+                    border-radius: 19px;
+                }
+            }
 
-        .gitee-traffic {
-            background: url("./images/1-bg.png");
-            background-color: #e8faea;
-            background-size: 100% 100%;
-        }
+            img {
+                width: 33px;
+                height: 33px;
+            }
 
-        .gitHub-traffic {
-            background: url("./images/2-bg.png");
-            background-color: #e7e1fb;
-            background-size: 100% 100%;
-        }
+            .item-value {
+                margin-bottom: 4px;
+                font-family: DIN;
+                font-size: 28px;
+                font-weight: bold;
+                color: #1a1a37;
+            }
 
-        .today-traffic {
-            background: url("./images/3-bg.png");
-            background-color: #fdf3e9;
-            background-size: 100% 100%;
-        }
+            .traffic-name {
+                overflow: hidden;
+                font-family: DIN;
+                font-size: 15px;
+                color: #1a1a37;
+                white-space: nowrap;
+            }
 
-        .yesterday-traffic {
-            background: url("./images/4-bg.png");
-            background-color: #f0f5fb;
-            background-size: 100% 100%;
+            .gitee-traffic {
+                background: url("./images/1-bg.png");
+                background-color: #e8faea;
+                background-size: 100% 100%;
+            }
+
+            .gitHub-traffic {
+                background: url("./images/2-bg.png");
+                background-color: #e7e1fb;
+                background-size: 100% 100%;
+            }
+
+            .today-traffic {
+                background: url("./images/3-bg.png");
+                background-color: #fdf3e9;
+                background-size: 100% 100%;
+            }
+
+            .yesterday-traffic {
+                background: url("./images/4-bg.png");
+                background-color: #f0f5fb;
+                background-size: 100% 100%;
+            }
         }
     }
 
@@ -191,6 +208,12 @@
     }
 
     .card {
+        box-sizing: border-box;
+        padding: 25px 40px 25px;
+        margin-bottom: 10px;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        background-color: #fff;
         .header-title {
             display: flex;
             flex-direction: row;
@@ -208,12 +231,6 @@
             .dropdown {
                 cursor: pointer;
             }
-        }
-
-        .e-chart {
-            margin: auto;
-            position: relative;
-            width: 100%;
         }
     }
 }

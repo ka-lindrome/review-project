@@ -1,5 +1,5 @@
 <template>
-manageTeacher
+    
 </template>
 
 <script setup>
