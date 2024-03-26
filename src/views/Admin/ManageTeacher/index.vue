@@ -26,7 +26,7 @@
                 <el-table-column prop="phone" label="手机号" show-overflow-tooltip></el-table-column>
                 <el-table-column prop="email" label="邮箱" show-overflow-tooltip></el-table-column>
                 <el-table-column prop="password" label="账号密码" show-overflow-tooltip></el-table-column>
-                <el-table-column prop="status" label="用户状态" width="200"
+                <el-table-column prop="status" label="用户状态" width="140"
                     :filters="[{ text: '在线', value: 1 }, { text: '离线', value: 0 }]" :filter-method="filterStatus">
                     <template #default="scope">
                         <el-tag type="success" v-if="scope.row.status">在线</el-tag>
@@ -35,7 +35,7 @@
                 </el-table-column>
 
                 <el-table-column prop="createTime" label="创建时间" show-overflow-tooltip sortable></el-table-column>
-                <el-table-column label="操作" width="130">
+                <el-table-column label="操作" width="150">
                     <template #default="scope">
                         <el-button :disabled="scope.row.name === 'admin'" size="small" text type="primary"
                             @click="onOpenEditUser('edit', scope.row)" style="margin-left: -12px;">修改</el-button>

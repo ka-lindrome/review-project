@@ -108,7 +108,7 @@ const openDialog = (type, row) => {
         state.dialog.title = '修改教师信息';
         state.dialog.submitTxt = '修 改';
     } else {
-        state.dialog.title = '新增教师';
+        state.dialog.title = '新增教师用户';
         state.dialog.submitTxt = '新 增';
         // 清空表单，此项需加表单验证才能使用
         // nextTick(() => {

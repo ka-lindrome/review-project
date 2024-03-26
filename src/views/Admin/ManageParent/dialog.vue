@@ -4,20 +4,18 @@
             <el-form ref="userDialogFormRef" :model="state.ruleForm" size="default" label-width="90px">
                 <el-row :gutter="35">
                     <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-                        <el-form-item label="姓名">
-                            <el-input v-model="state.ruleForm.name" placeholder="请输入名字" clearable></el-input>
+                        <el-form-item label="学生姓名">
+                            <el-input v-model="state.ruleForm.name" placeholder="请输入学生名字" clearable></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-                        <el-form-item label="任教学科">
-                            <el-cascader :options="state.deptData"
-                                :props="{ checkStrictly: true, value: 'deptName', label: 'deptName' }"
-                                placeholder="请选择学科" clearable class="w100" v-model="state.ruleForm.course">
-                                <template #default="{ node, data }">
-                                    <span>{{ data.deptName }}</span>
-                                    <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
-                                </template>
-                            </el-cascader>
+                        <el-form-item label="学号">
+                            <el-input v-model="state.ruleForm.name" placeholder="请输入学生学号" clearable></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
+                        <el-form-item label="家长姓名">
+                            <el-input v-model="state.ruleForm.phone" placeholder="请输入家长姓名" clearable></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
@@ -37,7 +35,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb20">
-                        <el-form-item label="任教班级">
+                        <el-form-item label="年级班级">
                             <el-input v-model="state.ruleForm.class" placeholder="请输入" clearable></el-input>
                         </el-form-item>
                     </el-col>
@@ -86,6 +84,7 @@ const state = reactive({
         course: '', // 任教学科
         phone: '', // 手机号
         email: '', // 邮箱
+        parent:'',
         password: '', // 账户密码
         overdueTime: '', // 时间
         status: true, // 用户状态
@@ -98,17 +97,16 @@ const state = reactive({
         title: '',
         submitTxt: '',
     },
-    deptData: [],
 });
 
 // 打开弹窗
 const openDialog = (type, row) => {
     if (type === 'edit') {
         state.ruleForm = row;
-        state.dialog.title = '修改教师信息';
+        state.dialog.title = '修改学生信息';
         state.dialog.submitTxt = '修 改';
     } else {
-        state.dialog.title = '新增教师';
+        state.dialog.title = '新增学生用户';
         state.dialog.submitTxt = '新 增';
         // 清空表单，此项需加表单验证才能使用
         // nextTick(() => {
@@ -116,38 +114,20 @@ const openDialog = (type, row) => {
         // });
     }
     state.dialog.isShowDialog = true;
-    getMenuData();
 };
 // 关闭弹窗
 const closeDialog = () => {
     state.dialog.isShowDialog = false;
 };
-// 取消
 const onCancel = () => {
     closeDialog();
 };
-// 提交
 const onSubmit = () => {
     closeDialog();
     emit('refresh');
     // if (state.dialog.type === 'add') { }
 };
-// 初始化部门数据
-const getMenuData = () => {
-    state.deptData.push(
-        { deptName: '语文', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '语文学科', id: Math.random() },
-        { deptName: '数学', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '数学学科', id: Math.random() },
-        { deptName: '英语', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '英语学科', id: Math.random() },
-        { deptName: '物理', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '物理学科', id: Math.random() },
-        { deptName: '化学', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '化学学科', id: Math.random() },
-        { deptName: '生物', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '生物学科', id: Math.random() },
-        { deptName: '历史', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '历史学科', id: Math.random() },
-        { deptName: '地理', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '地理学科', id: Math.random() },
-        { deptName: '政治', createTime: new Date().toLocaleString(), status: true, sort: Math.random(), describe: '政治学科', id: Math.random() }
-    );
-};
 
-// 暴露变量
 defineExpose({
     openDialog,
 });

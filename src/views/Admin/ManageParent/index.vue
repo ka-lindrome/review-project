@@ -20,22 +20,22 @@
             <el-table :data="state.tableData.data" v-loading="state.tableData.loading"
                 style="width: 100%; height: 760px;" :row-style="rowStyle">
                 <el-table-column type="index" label="序号" width="70" />
-                <el-table-column prop="name" label="教师姓名" width="130"></el-table-column>
-                <el-table-column prop="course" label="任教学科" width="110"></el-table-column>
-                <el-table-column prop="class" label="任教班级" width="110"></el-table-column>
-                <el-table-column prop="phone" label="手机号" show-overflow-tooltip></el-table-column>
+                <el-table-column prop="name" label="学生姓名" width="130"></el-table-column>
+                <el-table-column prop="course" label="学号" width="180"></el-table-column>
+                <el-table-column prop="class" label="班级" width="110"></el-table-column>
+                <el-table-column prop="parent" label="家长姓名" show-overflow-tooltip></el-table-column>
+                <el-table-column prop="phone" label="家长姓名" show-overflow-tooltip></el-table-column>
                 <el-table-column prop="email" label="邮箱" show-overflow-tooltip></el-table-column>
                 <el-table-column prop="password" label="账号密码" show-overflow-tooltip></el-table-column>
-                <el-table-column prop="status" label="用户状态" width="200"
+                <el-table-column prop="status" label="用户状态" width="140"
                     :filters="[{ text: '在线', value: 1 }, { text: '离线', value: 0 }]" :filter-method="filterStatus">
                     <template #default="scope">
                         <el-tag type="success" v-if="scope.row.status">在线</el-tag>
                         <el-tag type="info" v-else>离线</el-tag>
                     </template>
                 </el-table-column>
-
                 <el-table-column prop="createTime" label="创建时间" show-overflow-tooltip sortable></el-table-column>
-                <el-table-column label="操作" width="130">
+                <el-table-column label="操作" width="150">
                     <template #default="scope">
                         <el-button :disabled="scope.row.name === 'admin'" size="small" text type="primary"
                             @click="onOpenEditUser('edit', scope.row)" style="margin-left: -12px;">修改</el-button>
@@ -105,12 +105,13 @@ const getTableData = () => {
         const formattedDateTime = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
         data.push({
             name: item.name,
-            course: item.course,
+            course: item.studentID,
             phone: item.phone,
             email: item.email,
             password: item.password,
+            parent: item.parent,
             status: status,
-            class: item.class + " 班",
+            class: item.grade+" "+item.class + "班",
             createTime: formattedDateTime,
         });
     }
@@ -170,7 +171,7 @@ onMounted(() => {
     console.log(token.value);
     API({
         methods: 'get',
-        url: '/admin/t/data',
+        url: '/admin/p/data',
         headers: {
             token: token.value
         }
