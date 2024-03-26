@@ -12,7 +12,7 @@ import router from './router';
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
-
+// app.use(store)
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

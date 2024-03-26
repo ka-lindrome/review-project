@@ -13,7 +13,8 @@ import ManageParent from '@/views/Admin/ManageParent'
 import TestDataBaseP from '@/views/common/Test/TestDataBaseP'
 import TestDataBaseT from '@/views/common/Test/TestDataBaseT'
 
-import AIRobot from '@/views/common/AI/AIRobot'
+import AIRobot from '@/views/common/AI/components/AIRobot'
+// import KnowledgeBase from '@/views/Teacher/KnowledgeBase/KnowledgeBase'
 
 const routes = [
     {
@@ -71,6 +72,11 @@ const routes = [
                 name: '智能机器人',
                 component: AIRobot
             }
+            // ,{
+            //     path:'/KnowledgeBase',
+            //     name: '知识库',
+            //     component: KnowledgeBase
+            // }
         ]
     },
 

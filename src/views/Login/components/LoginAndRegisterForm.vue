@@ -53,13 +53,6 @@
         </el-radio-group>
       </el-form-item>
 
-         <el-form-item label="选择身份">
-           <el-radio-group v-model="Registerform.role">
-             <el-radio label="3">家长</el-radio>
-             <el-radio label="2">教师</el-radio>
-             <el-radio label="1">管理员</el-radio>
-           </el-radio-group>
-         </el-form-item>
 
         <div class="login-btn">
            <el-button class="btn" :icon="HomeFilled" round size="large" type="primary" @click="backToLogin"> 返回登录 </el-button>
@@ -111,7 +104,6 @@ function getVcode() {
 }
 
 function login(){
-  router.replace('/Index')
    if(Loginform.value.email == ''){
      ElMessage({
        message:"邮箱不能为空",
@@ -140,7 +132,7 @@ function login(){
      url:'/user/login',
      data:postData
    }).then((response)=>{
-     console.log("登陆成功",response.data)
+      console.log("登陆成功",response.data)
      ElMessage({
       message:"登陆成功",
       type:"success"
@@ -150,6 +142,13 @@ function login(){
       sessionStorage.setItem("username",response.data.data.name)
       sessionStorage.setItem("useravatar",response.data.data.avatar)
      router.replace('/Index')
+   }).catch((err)=>{
+    if(err.response.status == 400){
+      ElMessage({
+      message:"账号不存在或者密码错误",
+      type:"error"
+     }) 
+    }
    })
    }
 }
@@ -201,6 +200,11 @@ function register() {
         type: "success"
       })
       showLogin.value = false;
+    }).catch((err)=>{
+      ElMessage({
+        message:"注册失败",
+        type:"error"
+      })
     })
   }
 }

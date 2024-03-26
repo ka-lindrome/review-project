@@ -84,7 +84,7 @@ let collapse = () => {
   emit('doCollapse');
 }
 
-const username = ref("清河海风dsddd");
+let username = ref("清河海风dsddd");
 
 let imgUrl = ref(require("../assets/images/img.png"))
 
@@ -108,21 +108,24 @@ let logout = () => {
 }
 onMounted(() => {
   console.log("sess1:",sessionStorage);
-  username.value = sessionStorage.getItem("username")
-  imgUrl.value = sessionStorage.getItem("useravatar")
-  console.log("value",username.value,"item",sessionStorage.getItem("username"))
-  // token.value = sessionStorage.getItem('Token')
-  // API({
-  //   method: 'get',
-  //   url: '/user',
-  //   headers: {
-  //   // 将token放在请求头中
-  //   token: token.value
-  // }
-  // }).then(res => {
-  //   username.value = res.data.name
-  //   imgUrl.value = res.data.avatar
-  // })
+  // username.value = sessionStorage.getItem("username")
+  // imgUrl.value = sessionStorage.getItem("useravatar")
+  // console.log("value",username.value,"item",sessionStorage.getItem("username"))
+  token.value = sessionStorage.getItem('Token')
+  API({
+    method: 'get',
+    url: '/user',
+    headers: {
+    // 将token放在请求头中
+    token: token.value
+  }
+  }).then(res => {
+    username.value = res.data.data.name
+    imgUrl.value = res.data.data.avatar
+    console.log(username.value,imgUrl.value);
+    console.log(res);
+  })
+  router.push('/Home')
 })
 
 </script>
