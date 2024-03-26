@@ -1,6 +1,6 @@
 <template>
-  <div class="dataVisualize-box">
-    <div class="card top-box">
+  <div class="dataVisualize-box" style="background-color: rgb(240,241,243);">
+    <div class="card top-box" style="background-color: white;">
       <div class="top-title">成绩分析</div>
       <el-tabs v-model="tabActive" class="demo-tabs">
         <el-tab-pane v-for="item in tab" :key="item.name" :label="item.label" :name="item.name"></el-tab-pane>
