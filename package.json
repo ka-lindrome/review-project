@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ant-design/pro-components": "^2.6.52",
     "@element-plus/icons-vue": "^2.3.1",
     "@pureadmin/table": "^3.1.2",
     "@pureadmin/utils": "^2.4.7",
@@ -23,6 +24,7 @@
     "sortablejs": "^1.15.2",
     "stylus-loader": "^8.1.0",
     "vue": "^3.2.13",
+    "vue-element-pro-components": "^1.0.35",
     "vue-router": "^4.3.0",
     "vuex": "^4.1.0",
     "xlsx": "^0.18.5"

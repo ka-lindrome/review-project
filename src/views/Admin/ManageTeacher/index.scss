@@ -1,0 +1,51 @@
+// 容器样式
+.main-box {
+    color: black;
+    box-sizing: border-box;
+    padding: 15px;
+    height: 100%;
+
+    // 自动布局内边距
+    .layout-padding-auto {
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        background-color: #fff;
+        height: 100%;
+
+        // 盒子阴影
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    // 用户搜索样式
+    .system-user-search {
+        margin-bottom: 15px;
+
+        // 输入框样式
+        .el-input {
+            max-width: 180px;
+            margin-right: 10px;
+        }
+
+        // 左边距
+        .ml10 {
+            margin-left: 10px;
+        }
+    }
+}
+
+// 表格样式
+.el-table {
+    width: 100%;
+
+    // 表格列样式
+    .el-table-column {
+        white-space: nowrap; // 防止文本换行
+    }
+
+    // 分页样式
+    .el-pagination {
+        margin-top: 15px;
+    }
+}
