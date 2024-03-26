@@ -14,7 +14,7 @@ import TestDataBaseP from '@/views/common/Test/TestDataBaseP'
 import TestDataBaseT from '@/views/common/Test/TestDataBaseT'
 
 import AIRobot from '@/views/common/AI/components/AIRobot'
-// import KnowledgeBase from '@/views/Teacher/KnowledgeBase/KnowledgeBase'
+import KnowledgeBase from '@/views/Teacher/KnowledgeBase'
 
 const routes = [
     {
@@ -72,11 +72,11 @@ const routes = [
                 name: '智能机器人',
                 component: AIRobot
             }
-            // ,{
-            //     path:'/KnowledgeBase',
-            //     name: '知识库',
-            //     component: KnowledgeBase
-            // }
+            ,{
+                path:'/KnowledgeBase',
+                name: '知识库',
+                component: KnowledgeBase
+            }
         ]
     },
 

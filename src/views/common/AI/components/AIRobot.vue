@@ -1,39 +1,46 @@
 <template>
-    <div>
-        <div class="header">
-            基于文心一言的学科知识问答机器人
-        </div>
-        <div class="flex-1 mx-2 mt-20 mb-2" ref="chatListDom">
-      <div
-        class="group flex flex-col px-4 py-3 hover:bg-slate-100 rounded-lg"
-        v-for="item of messages.filter((v) => v.role !== 'system')"
-      >
-      <!-- 渲染角色名 -->
-        <div class="flex justify-between items-center mb-2">
-          <div class="font-bold">{{ roleAlias[item.role] }}：</div>
-          <!-- <div class="invisible group-hover:visible" :content="item.content" ></div> -->
-        </div>
-      <!-- 渲染聊天信息 -->
-        <div>
-          <div
-            class="prose text-sm text-slate-600 leading-relaxed"
-            v-if="item.content"
-            v-html="md.render(item.content)"
-          ></div>
-          <!-- <Loding v-else /> -->
+  <div class="card">
+      <div class="header">
+        <div class="text-2xl font-bold">ERNIE</div>
+        <div class="ml-4 text-sm text-gray-500">
+          基于 文心一言 的 学科知识库 人工智能对话
         </div>
       </div>
 
 
-    </div>
-        <div class="inputbox">
-            <el-input class="input" placeholder="请输入" v-model="query" >
-            </el-input>
+      <div class="chatbox">
+        <el-scrollbar >
+          <div
+            class="group flex flex-col px-4 py-3 hover:bg-slate-100 rounded-lg"
+            v-for="item of messages.filter((v) => v.role !== 'system')"
+          >
+          <!-- 渲染角色名 -->
+            <div class="flex justify-between items-center mb-2">
+              <div class="font-bold">{{ roleAlias[item.role] }}：</div>
+              <!-- <div class="invisible group-hover:visible" :content="item.content" ></div> -->
+            </div>
+          <!-- 渲染聊天信息 -->
+            <div>
+              <div
+                class="prose text-sm text-slate-600 leading-relaxed"
+                v-if="item.content"
+                v-html="md.render(item.content)"
+              ></div>
+              <!-- <Loding v-else /> -->
+            </div>
+          </div>
+        </el-scrollbar>
+      </div>
+
+    
+      <div class="inputbox">
+        <el-input class="input" placeholder="请输入" v-model="query" ></el-input>
             <el-button class="submit" @click="submit">
                 提交
             </el-button>
         </div>
-    </div>
+  </div>
+    
 </template>
 
 <script setup>
@@ -90,26 +97,64 @@ function submit(){
 
 <style scoped>
 @import "./index.scss";
+.text-2xl {
+  font-size: 1.875rem; /* 根据文本大小 2xl 的定义 (text-2xl) */
+}
+
+.font-bold {
+  font-weight: bold;
+}
+.ml-4 {
+  margin-left: 1rem; /* 根据 ml-4 的定义设置左外边距 */
+}
+
+.text-sm {
+  font-size: 0.875rem; /* 根据 text-sm 的定义设置字体大小 */
+}
+
+.text-gray-500 {
+  color: #718096; /* 根据 text-gray-500 的定义设置文本颜色 */
+}
 
 
 .header{
     font-size: larger;
+    display: flex;
+    height: 7%;
+    align-items: center; /* 让内容垂直居中显示 */
+    background-color: gainsboro;
+    border-radius: 7px; /* 圆角 */
 }
 
 .chatbox {
-    width:100px;
-    height:100px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     align-items: center;
     justify-content: center;
-
+    flex: 1;
 }
 
 .inputbox{
+    position: sticky;
     display: flex;
+    margin-top: auto; 
+    margin-bottom: 10px;
+    bottom: 0%;
 }
 
 .submit{
     background-color: aqua;
+}
+
+.card {
+  border: 1px solid #e4e3e3; /* 边框 */
+  border-radius: 7px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 阴影 */
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 70%;
+  height: calc(99.7% - 20px);
+  position: relative;
+  flex-grow: 1;
 }
 </style>
