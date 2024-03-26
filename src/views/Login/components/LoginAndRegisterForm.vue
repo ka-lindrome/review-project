@@ -53,20 +53,21 @@
         </el-radio-group>
       </el-form-item>
 
-         <el-form-item label="选择身份">
-           <el-radio-group v-model="Registerform.role">
-             <el-radio label="3">家长</el-radio>
-             <el-radio label="2">教师</el-radio>
-             <el-radio label="1">管理员</el-radio>
-           </el-radio-group>
-         </el-form-item>
+      <el-form-item label="选择身份">
+        <el-radio-group v-model="Registerform.role">
+          <el-radio label="3">家长</el-radio>
+          <el-radio label="2">教师</el-radio>
+          <el-radio label="1">管理员</el-radio>
+        </el-radio-group>
+      </el-form-item>
 
-        <div class="login-btn">
-           <el-button class="btn" :icon="HomeFilled" round size="large" type="primary" @click="backToLogin"> 返回登录 </el-button>
-           <el-button class="btn" :icon="UserFilled" round size="large" type="primary" @click="register"> 完成注册 </el-button>
-        </div>
-       </el-form>
-   </div>
+      <div class="login-btn">
+        <el-button class="btn" :icon="HomeFilled" round size="large" type="primary" @click="backToLogin"> 返回登录
+        </el-button>
+        <el-button class="btn" :icon="UserFilled" round size="large" type="primary" @click="register"> 完成注册</el-button>
+      </div>
+    </el-form>
+  </div>
 </template>
 
 <script setup>
@@ -110,48 +111,48 @@ function getVcode() {
 
 }
 
-function login(){
-  // router.replace('/Index')
-   if(Loginform.value.email == ''){
-     ElMessage({
-       message:"邮箱不能为空",
-       type:'warning'
-     })
-   }else if(Loginform.value.password == ''){
-       ElMessage({
-       message:"密码不能为空",
-       type:'warning'
-     })
-   }else if(Loginform.value.vcode == ''){
-       ElMessage({
-       message:"验证码不能为空",
-       type:'warning'
-     })
-   }else{
-     console.log("请求登录...",Loginform.value.email)
-     const postData = {
-       email:Loginform.value.email,
-       password:Loginform.value.password,
-       roleID:parseInt(Loginform.value.role)
-       }
-       console.log(postData);
-     API({
-     method:'post',
-     url:'/user/login',
-     data:postData
-   }).then((response)=>{
-     console.log("登陆成功",response.data)
-     ElMessage({
-      message:"登陆成功",
-      type:"success"
-     })  
-     console.log("token:",response.data.data.token);
-      sessionStorage.setItem('Token', response.data.data.token);
-      sessionStorage.setItem("username",response.data.data.name)
-      sessionStorage.setItem("useravatar",response.data.data.avatar)
-     router.replace('/Index')
-   })
-   }
+function login() {
+  router.replace('/Index')
+  // if(Loginform.value.email == ''){
+  //   ElMessage({
+  //     message:"邮箱不能为空",
+  //     type:'warning'
+  //   })
+  // }else if(Loginform.value.password == ''){
+  //     ElMessage({
+  //     message:"密码不能为空",
+  //     type:'warning'
+  //   })
+  // }else if(Loginform.value.vcode == ''){
+  //     ElMessage({
+  //     message:"验证码不能为空",
+  //     type:'warning'
+  //   })
+  // }else{
+  //   console.log("请求登录...",Loginform.value.email)
+  //   const postData = {
+  //     email:Loginform.value.email,
+  //     password:Loginform.value.password,
+  //     roleID:parseInt(Loginform.value.role)
+  //     }
+  //     console.log(postData);
+  //   API({
+  //   method:'post',
+  //   url:'/user/login',
+  //   data:postData
+  // }).then((response)=>{
+  //   console.log("登陆成功",response.data)
+  //   ElMessage({
+  //    message:"登陆成功",
+  //    type:"success"
+  //   })
+  //   console.log("token:",response.data.data.token);
+  //    sessionStorage.setItem('Token', response.data.data.token);
+  //    sessionStorage.setItem("username",response.data.data.name)
+  //    sessionStorage.setItem("useravatar",response.data.data.avatar)
+  //   router.replace('/Index')
+  // })
+  // }
 }
 
 function changeToRegister() {

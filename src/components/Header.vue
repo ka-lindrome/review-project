@@ -4,6 +4,7 @@
       <Expand v-if="isCollapse"/>
       <Fold v-else/>
     </el-icon>
+    <Breadcrumb style="margin-left: 20px;"></Breadcrumb>
     <div style="display: flex;align-items: center;justify-content: flex-end;height: 60px;margin-left: auto">
 
       <el-dropdown trigger="click" style="margin-right:20px;cursor: pointer">
@@ -39,7 +40,6 @@
         </el-icon>
       </el-tooltip>
 
-
       <el-avatar :src="imgUrl" :size="40" style="margin-left:20px;"></el-avatar>
 
       <el-dropdown trigger="click" style="margin-left:20px;cursor: pointer">
@@ -49,7 +49,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <router-link to="/PersonCenter">
-            <el-dropdown-item :icon="Plus">个人中心</el-dropdown-item>
+              <el-dropdown-item :icon="Plus">个人中心</el-dropdown-item>
             </router-link>
             <el-dropdown-item :icon="CirclePlusFilled" @click="logout">
               退出登录
@@ -65,8 +65,8 @@
 </template>
 
 <script setup>
-// import Breadcrumb from '@/components/BreadCrumb/index'
-import {defineProps, defineEmits, ref ,onMounted} from 'vue'
+import Breadcrumb from '@/components/BreadCrumb/index'
+import {defineProps, defineEmits, ref, onMounted} from 'vue'
 import {toFullScreen, exitFullScreen} from "@/utils/ScreenUtils";
 import {useRouter} from 'vue-router'
 import API from '@/utils/axiosInference'
@@ -107,10 +107,10 @@ let logout = () => {
   router.push('/')
 }
 onMounted(() => {
-  console.log("sess1:",sessionStorage);
+  console.log("sess1:", sessionStorage);
   username.value = sessionStorage.getItem("username")
   imgUrl.value = sessionStorage.getItem("useravatar")
-  console.log("value",username.value,"item",sessionStorage.getItem("username"))
+  console.log("value", username.value, "item", sessionStorage.getItem("username"))
   // token.value = sessionStorage.getItem('Token')
   // API({
   //   method: 'get',

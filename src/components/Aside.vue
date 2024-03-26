@@ -10,113 +10,49 @@
         default-active="/Home"
         :collapse="isCollapse"
         :collapse-transition="false"
-        router
+        @select="menuClick"
     >
 
-      <el-menu-item index="/Home">
-        <el-icon>
-          <House/>
-        </el-icon>
-        <span style="margin-left: 10px;">首页</span>
-      </el-menu-item>
+      <template v-for="item in menuList"
+      >
 
-      <el-sub-menu index="2" v-show="roleId==='1'">
-        <template #title>
-          <el-icon>
-            <Star/>
-          </el-icon>
-          <span>人员管理</span>
-        </template>
+        <el-sub-menu
+            :key="item.path"
+            :index="item.path"
+            v-if="item.children && item.children.length > 0"
+        >
+          <template #title>
+            <el-icon>
+              <component :is="item.icon"/>
+            </el-icon>
+            <span>{{ item.title }}</span>
+          </template>
 
-        <el-menu-item index="/ManageTeacher">
+          <el-menu-item
+              v-for="item2 in item.children"
+              :key="item2.path"
+              :index="item2.path"
+              :class="activePath==item2.path  ? 'active':'common' "
+          >
+            <el-icon>
+              <component :is="item2.icon"/>
+            </el-icon>
+            <span style="margin-left: 10px">{{ item2.menuName }}</span>
+          </el-menu-item>
+        </el-sub-menu>
+
+
+        <el-menu-item
+            :index="item.path"
+            v-else
+            :class="activePath==item.path  ? 'active':'common' "
+        >
           <el-icon>
-            <User/>
+            <component :is="item.icon"/>
           </el-icon>
-          <span style="margin-left: 10px">教职工人员</span>
+          <span style="margin-left: 10px">{{ item.menuName }}</span>
         </el-menu-item>
-
-
-        <el-menu-item index="/ManageParent">
-          <el-icon>
-            <User/>
-          </el-icon>
-          <span style="margin-left: 10px">用户人员</span>
-        </el-menu-item>
-
-      </el-sub-menu>
-
-
-      <el-menu-item index="/VisualAnalysisT" v-show="roleId==='2'">
-        <el-icon>
-          <DataAnalysis/>
-        </el-icon>
-        <span style="margin-left: 10px">数据可视化</span>
-      </el-menu-item>
-
-      <el-menu-item index="/VisualAnalysisP" v-show="roleId==='3'">
-        <el-icon>
-          <DataAnalysis/>
-        </el-icon>
-        <span style="margin-left: 10px">数据可视化</span>
-      </el-menu-item>
-
-
-      <el-menu-item index="/UploadPapers" v-show="roleId==='2'">
-        <el-icon>
-          <FolderOpened/>
-        </el-icon>
-        <span style="margin-left: 10px">文件上传</span>
-      </el-menu-item>
-
-
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon>
-            <location/>
-          </el-icon>
-          <span>个人页</span>
-        </template>
-
-        <el-menu-item index="/PersonCenter">
-          <el-icon>
-            <User/>
-          </el-icon>
-          <span style="margin-left: 10px">个人中心</span>
-        </el-menu-item>
-
-
-        <el-menu-item index="/PersonSetting">
-          <el-icon>
-            <Setting/>
-          </el-icon>
-          <span style="margin-left: 10px">个人设置</span>
-        </el-menu-item>
-
-      </el-sub-menu>
-
-
-      <el-menu-item index="/TestDataBaseT" v-show="roleId==='2'">
-        <el-icon>
-          <Document/>
-        </el-icon>
-        <span style="margin-left: 10px">题库</span>
-      </el-menu-item>
-
-
-      <el-menu-item index="/TestDataBaseP" v-show="roleId==='3'">
-        <el-icon>
-          <Document/>
-        </el-icon>
-        <span style="margin-left: 10px">题库</span>
-      </el-menu-item>
-
-      <el-menu-item index="/AIRobot" v-show="roleId!='1'">
-        <el-icon>
-          <Cpu/>
-        </el-icon>
-        <span style="margin-left: 10px">智能机器人</span>
-      </el-menu-item>
-
+      </template>
 
     </el-menu>
 
@@ -125,13 +61,153 @@
 </template>
 
 <script setup>
-import {defineProps, onMounted, ref} from 'vue'
-import {useRouter} from 'vue-router'
+import {defineProps, onMounted, ref, watchEffect} from 'vue'
+import {useRouter, useRoute} from 'vue-router'
 import API from '@/utils/axiosInference'
+
 
 const router = useRouter()
 let roleId = ref('2')
 let token = ref('')
+let activePath = ref("")
+const route = useRoute()
+
+watchEffect(() => {
+  activePath.value = route.path
+})
+let menuList = ref([])
+
+let menuList1 = ref([
+  {
+    menuName: '首页',
+    icon: 'House',
+    path: '/Home'
+  },
+  {
+    title: '人员管理', icon: 'Star',
+    children: [
+      {
+        menuName: '教职工人员',
+        icon: 'User',
+        path: '/ManageTeacher'
+      },
+      {
+        menuName: '用户人员',
+        icon: 'User',
+        path: '/ManageParent'
+      }]
+  }, {
+    title: '个人页', icon: 'location',
+    children: [
+      {
+        menuName: '个人中心',
+        icon: 'User',
+        path: '/PersonCenter'
+      },
+      {
+        menuName: '个人设置',
+        icon: 'Setting',
+        path: '/PersonSetting'
+      }]
+  },
+])
+
+let menuList2 = ref([
+  {
+    menuName: '首页',
+    icon: 'House',
+    path: '/Home'
+  },
+  {
+    menuName: '数据可视化',
+    icon: 'DataAnalysis',
+    path: '/VisualAnalysisT'
+  },
+  {
+    title: '智能阅卷',
+    icon: 'FolderOpened',
+    path: '/file',
+    children: [
+      {
+        menuName: '试卷上传',
+        icon: 'User',
+        path: '/UploadPapers'
+
+      }, {
+        menuName: '试卷批阅',
+        icon: 'User',
+        path: '/CorrectPapers'
+      }
+    ]
+  },
+  {
+    title: '个人页',
+    icon: 'location',
+    path: '/person',
+    children: [
+      {
+        menuName: '个人中心',
+        icon: 'User',
+        path: '/PersonCenter'
+      },
+      {
+        menuName: '个人设置',
+        icon: 'Setting',
+        path: '/PersonSetting'
+      }]
+  },
+  {
+    menuName: '题库',
+    icon: 'Document',
+    path: '/TestDataBaseT'
+  },
+  {
+    menuName: '智能机器人',
+    icon: 'Cpu',
+    path: '/AIRobot'
+  }])
+
+let menuList3 = ref([
+  {
+    menuName: '首页',
+    icon: 'House',
+    path: '/Home'
+  },
+  {
+    menuName: '数据可视化',
+    icon: 'DataAnalysis',
+    path: '/VisualAnalysisP'
+  },
+  {
+    title: '个人页', icon: 'location',
+    children: [
+      {
+        menuName: '个人中心',
+        icon: 'User',
+        path: '/PersonCenter'
+      },
+      {
+        menuName: '个人设置',
+        icon: 'Setting',
+        path: '/PersonSetting'
+      }]
+  },
+  {
+    menuName: '题库',
+    icon: 'Document',
+    path: '/TestDataBaseP'
+  },
+  {
+    menuName: '智能机器人',
+    icon: 'Cpu',
+    path: '/AIRobot'
+  }])
+
+
+let menuClick = (path) => {
+  //path
+  router.push(path)
+}
 
 
 const props = defineProps({
@@ -140,19 +216,28 @@ const props = defineProps({
   }
 })
 
+
 onMounted(() => {
   token.value = sessionStorage.getItem('Token')
   API({
     method: 'get',
     url: '/user',
     headers: {
-    // 将token放在请求头中
-    token: token.value
-  }
+      // 将token放在请求头中
+      token: token.value
+    }
   }).then(res => {
     roleId.value = res.data.data.roleID.toString()
+    if (roleId.value == 1) {
+      menuList.value = menuList1
+    } else if (roleId.value == 2) {
+      menuList.value = menuList2
+    } else if (roleId.value == 3) {
+      menuList.value = menuList3
+    }
   })
   router.push('/Home')
+  menuList.value = menuList2.value
 })
 </script>
 
@@ -176,5 +261,11 @@ onMounted(() => {
   background-color: #001529 !important;
 }
 
+.active {
+  color: #1890FF;
+}
 
+.common {
+  color: #fff
+}
 </style>

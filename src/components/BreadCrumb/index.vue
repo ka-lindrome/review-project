@@ -1,32 +1,53 @@
 <template>
   <el-breadcrumb separator="/">
+    <transition-group name="breadcrumb">
 
-<!--    <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">-->
-<!--      <span v-if="item.redirect === 'noRedirect' || index == levelList.length - 1" class="no-redirect">{{ item.name }}</span>-->
-<!--      <a v-else @click.prevent="handleLink(item)">{{ item.meta.title[lang] }}</a>-->
-<!--    </el-breadcrumb-item>-->
 
+      <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
+      <span v-if="item.redirect === 'noRedirect' || index == levelList.length - 1" class="no-redirect">{{
+          item.name
+        }}</span>
+        <a v-else>{{ item.name }}</a>
+      </el-breadcrumb-item>
+    </transition-group>
   </el-breadcrumb>
 </template>
 
 <script setup>
-import {onMounted,ref} from "vue";
-import {  useRoute, } from 'vue-router'
-const levelList = ref([])
+import {computed} from "vue";
+import {useRoute,} from 'vue-router'
+// const levelList = ref([])
 const route = useRoute()
-const getBreadcrumb = () => {
+const levelList = computed(() => {
   let matched = route.matched.filter(item => item.name)
-  levelList.value = matched
-  levelList.value.forEach(
-      i => alert(i.name)
-  )
-}
+  return matched;
 
-onMounted(()=>[
-    getBreadcrumb()
-])
+})
+
 </script>
 
 <style scoped>
+.no-redirect {
+  color: #293e5a;
+  cursor: text;
+}
+
+.breadcrumb-enter-active {
+  transition: all 0.8s;
+}
+
+.breadcrumb-leave-active {
+  transition: all 0.5s;
+}
+
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
 
 </style>

@@ -6,6 +6,7 @@ import VisualAnalysisT from "@/views/Teacher/VisualAnalysisT/analysis";
 import Home from '@/views/Home'
 import Login from '@/views/Login/Login.vue'
 import UploadPapers from '@/views/Teacher/UploadPapers'
+import CorrctPapers from '@/views/Teacher/CorrectPapers'
 import PersonCenter from '@/views/common/Person/PersonCenter'
 import PersonSetting from '@/views/common/Person/PersonSetting'
 import ManageTeacher from '@/views/Admin/ManageTeacher'
@@ -23,53 +24,109 @@ const routes = [
     },
     {
         path: '/Index',
-        name: 'index',
+        name: '',
         component: Index,
+        meta: {title: ''},
         children: [
             {
-                path: '/Home',
+                path: '/Home/index',
                 name: '首页',
-                component: Home
+                children: [
+                    {
+                        path: '/Home',
+                        name: '首页',
+                        component: Home
+                    }
+                ]
             }, {
-                path: '/VisualAnalysisP',
-                name: '数据可视化P',
-                component: VisualAnalysisP
+                path: '/data',
+                name: '数据可视化',
+                children: [
+                    {
+                        path: '/VisualAnalysisP',
+                        name: '数据可视化',
+                        component: VisualAnalysisP
+                    }
+                ]
             }, {
-                path: '/VisualAnalysisT',
-                name: '数据可视化T',
-                component: VisualAnalysisT
+
+                path: '/data',
+                name: '数据可视化',
+                children: [
+                    {
+                        path: '/VisualAnalysisT',
+                        name: '数据可视化',
+                        component: VisualAnalysisT
+                    }
+                ]
             }, {
-                path: '/UploadPapers',
-                name: '文件上传',
-                component: UploadPapers
+                path: '/file',
+                name: '智能阅卷',
+                children: [
+                    {
+                        path: '/UploadPapers',
+                        name: '试卷上传',
+                        component: UploadPapers
+
+                    }, {
+
+                        path: '/CorrectPapers',
+                        name: '试卷批阅',
+                        component: CorrctPapers
+
+                    }
+                ]
             }, {
-                path: '/PersonCenter',
-                name: '个人中心',
-                component: PersonCenter
+                path: '/Person',
+                name: '个人页',
+                children: [
+                    {
+                        path: '/PersonCenter',
+                        name: '个人中心',
+                        component: PersonCenter
+                    }, {
+                        path: '/PersonSetting',
+                        name: '个人设置',
+                        component: PersonSetting
+                    }
+                ]
+
             }, {
-                path: '/PersonSetting',
-                name: '个人设置',
-                component: PersonSetting
+                path: '/manage',
+                name: '/人员管理',
+                children: [{
+                    path: '/ManageTeacher',
+                    name: '教职工人员',
+                    component: ManageTeacher
+                }, {
+                    path: '/ManageParent',
+                    name: '用户人员',
+                    component: ManageParent
+                }]
             }, {
-                path: '/ManageTeacher',
-                name: '教职工人员',
-                component: ManageTeacher
+                path: '/test',
+                name: '题库',
+                children: [{
+                    path: '/TestDataBaseP',
+                    name: '题库',
+                    component: TestDataBaseP
+                }]
             }, {
-                path: '/ManageParent',
-                name: '用户人员',
-                component: ManageParent
+                path: '/test',
+                name: '题库',
+                children: [{
+                    path: '/TestDataBaseT',
+                    name: '题库',
+                    component: TestDataBaseT
+                }]
             }, {
-                path: '/TestDataBaseP',
-                name: '题库P',
-                component: TestDataBaseP
-            }, {
-                path: '/TestDataBaseT',
-                name: '题库T',
-                component: TestDataBaseT
-            }, {
-                path: '/AIRobot',
+                path: '/robot',
                 name: '智能机器人',
-                component: AIRobot
+                children: [{
+                    path: '/AIRobot',
+                    name: '智能机器人',
+                    component: AIRobot
+                }]
             }
         ]
     },
@@ -82,3 +139,4 @@ export const router = createRouter({
 })
 
 export default router
+
